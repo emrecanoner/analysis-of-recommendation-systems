@@ -34,6 +34,34 @@ export const translations = {
         description: "Araştırma metodolojimizi ve bulgularımızı keşfedin",
         button: "Metodolojiyi İncele"
       }
+    },
+    research: {
+      title: "MUBI Öneri Sistemleri Araştırması",
+      sections: {
+        intro: {
+          title: "Giriş"
+        },
+        datasets: {
+          title: "Veri Setleri"
+        },
+        curation: {
+          title: "Kürasyon Modeli"
+        },
+        contribution: {
+          title: "Katkı Sağlama Yolları"
+        },
+        conclusion: {
+          title: "Sonuç"
+        },
+        platform: {
+          title: 'Platform Gelişimi',
+          content: 'MUBI platformunun tarihsel gelişimi ve dönüm noktaları'
+        },
+        current: {
+          title: 'Güncel Durum',
+          content: 'MUBI\'nin mevcut yapısı ve yeni özellikleri'
+        }
+      }
     }
   },
   en: {
@@ -70,6 +98,34 @@ export const translations = {
         title: "Detailed Methodology",
         description: "Explore our research methodology and findings",
         button: "View Methodology"
+      }
+    },
+    research: {
+      title: "MUBI Recommendation Systems Research",
+      sections: {
+        intro: {
+          title: "Introduction"
+        },
+        datasets: {
+          title: "Datasets"
+        },
+        curation: {
+          title: "Curation Model"
+        },
+        contribution: {
+          title: "Ways to Contribute"
+        },
+        conclusion: {
+          title: "Conclusion"
+        },
+        platform: {
+          title: 'Platform Development',
+          content: 'Historical development and milestones of the MUBI platform'
+        },
+        current: {
+          title: 'Current Status',
+          content: 'Current structure and new features of MUBI'
+        }
       }
     }
   }
