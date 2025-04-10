@@ -33,7 +33,8 @@ export const translations = {
         title: "Detaylı Metodoloji",
         description: "Araştırma metodolojimizi ve bulgularımızı keşfedin",
         button: "Metodolojiyi İncele"
-      }
+      },
+      analysis: "Veri Analizi"
     },
     research: {
       title: "MUBI Öneri Sistemleri Araştırması",
@@ -62,6 +63,11 @@ export const translations = {
           content: 'MUBI\'nin mevcut yapısı ve yeni özellikleri'
         }
       }
+    },
+    analysis: {
+      title: "Film Veri Analizi",
+      popularMovies: "En Popüler Filmler",
+      genreDistribution: "Film Türleri Dağılımı"
     }
   },
   en: {
@@ -98,7 +104,8 @@ export const translations = {
         title: "Detailed Methodology",
         description: "Explore our research methodology and findings",
         button: "View Methodology"
-      }
+      },
+      analysis: "Data Analysis"
     },
     research: {
       title: "MUBI Recommendation Systems Research",
@@ -127,6 +134,11 @@ export const translations = {
           content: 'Current structure and new features of MUBI'
         }
       }
+    },
+    analysis: {
+      title: "Movie Data Analysis",
+      popularMovies: "Most Popular Movies",
+      genreDistribution: "Genre Distribution"
     }
   }
 }; 

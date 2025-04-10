@@ -3,11 +3,13 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -52,14 +54,26 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a
-              href="/research"
+            <button
+              onClick={() => router.push('/analysis')}
               className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
-              {t('home.explore')}
-            </a>
+              Veri Analizi
+            </button>
+            <button
+              onClick={() => router.push('/recommendations')}
+              className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              İçerik Temelli Filtreleme
+            </button>
+            <button
+              onClick={() => router.push('/collaborative')}
+              className="px-8 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              İşbirlikçi Filtreleme
+            </button>
             <a
-              href="/methodology"
+              href="/research"
               className="px-8 py-3 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-300 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700"
             >
               {t('home.methodology')}

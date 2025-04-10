@@ -1,0 +1,9 @@
+kagglehub[pandas-datasets]
+pandas
+plotly
+dash
+numpy
+fastapi
+uvicorn
+python-multipart
+scikit-surprise
