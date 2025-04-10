@@ -1,10 +1,16 @@
 'use client';
 
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider, useLanguage } from '@/i18n/LanguageContext';
 
 const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ 
+  weight: ['400', '500', '600', '700'],
+  subsets: ["latin"],
+  display: 'swap',
+  variable: '--font-poppins'
+});
 
 function Navbar() {
   const { t, language, setLanguage } = useLanguage();
@@ -57,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className="scroll-smooth">
+    <html lang="tr" className={`scroll-smooth ${poppins.variable}`}>
       <body className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}>
         <LanguageProvider>
           <div className="min-h-screen flex flex-col">
