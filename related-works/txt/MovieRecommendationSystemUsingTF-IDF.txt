@@ -1,0 +1,273 @@
+10
+
+VIII
+
+https://doi.org/10.22214/ijraset.2022.46367
+
+August 2022
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET)
+ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 7.538
+Volume 10 Issue VIII Aug 2022- Available at www.ijraset.com
+
+Movie Recommendation System Using TF-IDF
+Vectorization and Cosine Similarity
+PV. Snigdha1, M. Naveen2, S. Rahul3, Dr. C. N. Sujatha4, Mr. P. Pradeep5
+1, 2, 3
+
+B Tech ECE Students, Sreenidhi Institute of Science and Technology,
+4
+Professor ECE, Sreenidhi Institute of Science and Technology,
+5
+Assistant Professor ECE, Sreenidhi Institute of Science and Technology,
+Abstract: The internet has widened the horizons of numerous areas to engage and share relevant information in recent years. As
+it is said, everything has its advantages and disadvantages, thus with the increase in the field comes data saturation and data
+extraction difficulties. The suggestion system is critical in overcoming this challenge. Its purpose is to improve the user's
+experience by providing quick and comprehensible suggestions. Because of its ability to provide improved amusement, a movie
+suggestion is vital in our personal interaction. Users might be recommended a collection of movies depending on their interests
+or the appeal of the films. A recommendation system is being used to make suggestions for things to buy or see. They comb
+through a big database of information to lead people to the things that can suit their demands. A recommender system, also
+known as a recommendation engine or platform, is a type of data filtering system that attempts to forecast a user's "rating" or
+"preference" for an item. They're mostly employed for business purposes. This project outlines a method for providing users
+with generic options based on film popularity and/or theme.
+I.
+INTRODUCTION
+It is quite tough for people to get content that they're truly fascinated by during this age of knowledge overload. it's also difficult for
+the content producer to form their material and stand out from the throng. to handle this inconsistency, numerous researchers and
+businesses have developed Recommender Systems. Recommender System's purpose is to link users and knowledge, to order to help
+users to locate information that's relevant to them, and to push information to particular users. All consumers and content providers
+get pleasure from this arrangement.
+People have relied on suggestions for each major and tiny choice since the dawn of civilization. The individual is going to be
+possible to adapt their viewpoint (recommendation) when it comes from a talented individual and also when over two or three
+persons advocate the identical thing. Recommendation systems emerged within the modern internet age, supporting the identical
+concept as before. Recommendation Systems are programs that make suggestions to end-users supported by their preferences or the
+preferences of comparable users. The above divides this same recommendation system into two major types: Content-Based
+Filtering Recommendation Systems and Collaborative Filtering Recommendation Systems. the subsequent sections will undergo
+each of those categories. These classifications are supported by similarity measures; however, we've progressed to more complex
+methodologies like Machine learning algorithms. With the promising performance of the recommender system in e-commerce, film,
+music, books, and news suggestions, it's now moved to other industries like tourism and banking. "A recommender system also
+referred to as a recommendation system, maybe a form of data filtering system that attempts to forecast a user's 'rating' or
+'preference' for an item." After a forecast has been produced, the user is given recommendations or suggestions that are supported by
+the predictions' findings. There are many various styles of recommender systems, and not all of them are appropriate for each
+problem and circumstance.
+II.
+LITERATURE SURVEY
+Abhishek Singh, Samyak Jain, j Shanmukh Rao, Uppalpati Yogendra Reddy, and Abhishek Rawat created this system by employing
+technologies such as matrix factorization and recollection algorithms, rather than the commonly utilized hybrid-based approach.
+They also used several packages which include TfidVectorizer, nltk, and others to train an emotional model that can transform
+a review which is in the form of text into vector file and determine if the feedback published was favorable or unfavorable. When a
+movie title is put into the finished product, related films are suggested. Javascript was used to achieve this. The cosine similarity
+measure is used to calculate document similarity by geometrically displaying the vectors on a multidimensional space [1]
+
+© IJRASET: All Rights are Reserved | SJ Impact Factor 7.538 | ISRA Journal Impact Factor 7.894 |
+
+1128
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET)
+ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 7.538
+Volume 10 Issue VIII Aug 2022- Available at www.ijraset.com
+N. Muthurasu, Kavitha coonjeevaram, and Nandhini Rengaraj used the Term-frequency Inverse document frequency approach are
+used in this study to vectorize a hybrid audiovisual recommendation engine. The similarity is measured using the cosine similarity
+approach. A web-based user interface is used to show the system to the user. Even with a limited data model, the system provides
+efficient predictions and correct suggestions. User characterization and recordkeeping, analytics reports for creators and consumers,
+and data acquisition via web scraping are all planned for the future. It saves time for users, and future upgrades include a data
+analytics site that allows movie makers to study and track user performance and preferences for a certain genre/video. Faster and so
+more reliable recommendation engines expand market reach and provide a steady stream of repeat customers.[2]
+J. Aswin and P. Sabari Ramkumar suggested a system to overcome the cold start problem and suggest movies to its consumers. A
+hybrid method is presented that combines content and collaborative-based approaches, including a similarity-based approach for
+content-based collaborative filtering, a model-based approach for user-based collaborative filtering, and a neighbor-based approach
+for item-based collaborative filtering. The total performance of the network is increased by combining different filtering approaches.
+To increase the accuracy of both the recommendation system, they applied two collaborative approaches: user-based and itembased. The object Collaborative filter is based on Bayesian customized ranking, whereas the consumer Collaborative filter is built
+upon the Pearson product technique correlation coefficient algorithm.[3]
+Yu Zhu, Shibi He, Ziyu Guan, Jinhao Lin, Beidou Wang, Haifeng Liu, and Deng Cai concentrated mostly on the item cold-start
+problem in this study. Capturingcapturing users' opinions on a new item, including information (e.g. item characteristics) and first
+user ratings are useful. The suggested system in this research is a revolutionary item cold-start recommendation approach that takes
+advantage of both enhanced learning and item attribute information. They created consumer selection specific to item qualities and
+user rating history and then combined the data in an optimization method for user selection. We then construct reliable rating
+predictions for the remaining unselected users using the feedback ratings, users' past ratings, and item characteristics. The
+superiority of our suggested strategy over previous methods is demonstrated by experimental findings on two real-world datasets.[4]
+III.
+ANALYSIS WALKTHROUGH
+In this section, we are going to give a brief walkthrough of the project from data collection to model suggestion.
+
+Figure 3.1 Workflow of the project
+
+© IJRASET: All Rights are Reserved | SJ Impact Factor 7.538 | ISRA Journal Impact Factor 7.894 |
+
+1129
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET)
+ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 7.538
+Volume 10 Issue VIII Aug 2022- Available at www.ijraset.com
+The model explained in this paper is implemented in three phases, The first phase consists of the Collection and analysis of data
+where we used a dataset containing roughly 5000 movies and cleaned the data for further analysis. In the second phase of the
+project, we primarily focused on vectorization and the calculation of the similarity score of the dataset used where. For that, we used
+the functions TfidfVectorizer and cosine_similarity available on the scikit learn python library. The Sci-Kit Learn library is the best
+place to go for machine learning algorithms because it contains nearly all types of ML algorithms for Python, making evaluations
+faster and easier. The final phase consists of validating the model and looking at the suggestion made by the model.
+A. Dataset Used
+The dataset was procured from Kaggle. Kaggle is a hub for datasets where the datasets are published by a community of data
+scientists and machine learning practitioners. It contains roughly around 4808 movies and 24 attributes. The attributes of the dataset
+are Index, Budget of the movie, Key Genres of the movie, Homepage of the movie’s IMDB, the original language the movie was
+released in, Title of the movie, Overview/ Synopsis of the movie, Popularity, Production company, The country of production, Date
+of release, Revenue generated, Runtime of the movie, Status of the movie, Tagline, cast, crew and the director of the movie. The
+dataset was procured from Kaggle and can be found here
+
+Figure 3.2 Dataset 1
+
+Figure 3.3 Dataset 2
+
+© IJRASET: All Rights are Reserved | SJ Impact Factor 7.538 | ISRA Journal Impact Factor 7.894 |
+
+1130
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET)
+ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 7.538
+Volume 10 Issue VIII Aug 2022- Available at www.ijraset.com
+IV.
+IMPLEMENTATION
+In this section, we are going to give a brief walkthrough of the project from data collection to model suggestion.
+A. Definitions, Concepts, And Supplemental Data
+1) Pre-Processing the Data: The vast bulk of the material on the internet is guaranteed to have mistakes and blank spaces. The
+need to develop techniques for leveraging resources to make educated judgments has become critical in the drive for greater
+performance and dependability. In order to gain better insights, it is necessary to clean data before using it for predictive
+modeling. This necessitated some simple pre-processing of the Movie dataset we were working with.
+a) Converting the Dataset from CSV format to a Pandas data Frame: Commas are used to separate data in a CSV file, as the name
+indicates. It's a mechanism for applications that can't speak to one other directly to share structured data, such as the data of a
+spreadsheet. Here we convert the data from CSV to a pandas data frame to perform various arithmetic operations on the
+database. Pandas is a python package that offers a variety of data structures and operations which can be used for manipulating
+numerical data. It is primarily used for importing and analysing the data.
+b) Replacing the Null Values with Null String: When we concatenate strings together, we usually replace Null values in the dataset
+with Null strings. When a Null string is concatenated with a null value, the outcome is another null value, implying that the data
+we had before the concatenation is lost. We do so by using the for-in function available in python.
+2) TF-IDF Vectorization: Text vectorization is the process of converting text into a quantitative feature. It compares a phrase's
+"relative frequency" in a document to the consistency of that term across all papers. The TF-IDF weight shows a phrase's
+relative importance in the document and throughout the corpus. Phrase Frequency (TF) is a measure that displays how
+frequently a phrase appears in a document. Due to document size disparities, a term may appear more frequently in a large
+document than in a short one. As a result, the document's length is usually separated by term frequency. TF-IDF is among the
+most extensively used text vectorizers, and the computation is straightforward. It distinguishes between the uncommon word
+heavier weight and the more frequent term reduced weight.
+3) Cosine Similarity: Here we calculate the cosine similarity using the Cosine_similarity function. Cosine similarity is a statistic
+for determining how similar papers are regardless of size. It estimates the cosine of the angle made of two vectors cast in a
+cross-dimensional space mathematically. Because of the cosine similarity, even if two comparable documents are separated by
+the Distance measure (considering the size of such documents), they are likely to be orientated closer together. The higher the
+cosine similarity, the smaller the angle. The measure is utilized in data mining, information retrieval, and text matching
+applications. In information retrieval, utilizing weighted TF-IDF and cosine similarity to swiftly find documents that are
+comparable to a search query is a typical strategy.
+B. Stages Of Implementation
+1) Stage 1: Data Preparation
+After loading the data, here we print the first five rows from the downloaded data frame to observe the attributes of the data. Then
+we selected the relevant features required for an accurate recommendation. The key features are genres, keywords, tagline, cast, and
+director. Coming to the pre-processing part, we replaced the null values in the data with null strings. Finally, we combined the
+selected five key features.
+Figure 4.1 Key features
+
+Figure 4.2 Combined features
+
+© IJRASET: All Rights are Reserved | SJ Impact Factor 7.538 | ISRA Journal Impact Factor 7.894 |
+
+1131
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET)
+ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 7.538
+Volume 10 Issue VIII Aug 2022- Available at www.ijraset.com
+2) Stage 2: Vectorization Of The Data
+In this step, we converted the text data into feature vectors using the function TfidVectorizer. Tfidvectorizer is a function found in
+the sklearn library. Are the dataset after it has been vectorized.
+3) Stage 3: Calculating Cosine Similarity
+Here we calculate the cosine similarity using the Cosine_similarity function found in the sklearn library. Below seen is the similarity
+score matrix of the dataset.
+4) Stage 4: Model Validation And Suggestion
+When an input is given by the user a list is created with all the movies in the dataset after which the algorithm tries to find the
+closest match to the input given by the user. After finding the closest match, using the similarity score creates a list of similar
+movies. The movies are sorted based on their similarity score. Then a list of similar movies to the given input is printed.
+C.
+1)
+2)
+3)
+4)
+5)
+6)
+
+Process Of Implementation
+STEP 1: In the first step we take the input from the user by using the prompt, “Enter your favorite movie”.
+STEP 2: Here we create a list with all the movie names given in the dataset.
+STEP 3: Then we find the close match to the movie name given by the user.
+STEP 4: We find the closest match to the input given by the user following that.
+STEP 5: Then we find the index of the movie with the title.
+STEP 6: Then using we apply the similarity function on the index of the movie to calculate the cosine similarity of all movies in
+the dataset and create a list of similarity scores.
+7) STEP 7: Then we sort the similarity scores using the lambda function available in python.
+8) STEP 8: Finally, we print the name of similar movies based on the sorted similarity indices.
+
+Figure 4.3 Sorted similarity scores
+
+Figure 4.4 Input given by the user
+V.
+
+Figure 5.1 TF-IDF vectorized data
+
+RESULTS
+
+Figure 5.2 Remaining Vectorized data
+
+© IJRASET: All Rights are Reserved | SJ Impact Factor 7.538 | ISRA Journal Impact Factor 7.894 |
+
+1132
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET)
+ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 7.538
+Volume 10 Issue VIII Aug 2022- Available at www.ijraset.com
+
+Figure 5.3 Cosine similarity score matrix
+
+Figure 5.4 Recommended list of movies
+From the images, The algorithm has successfully vectorized the data using TF-IDF vectorization and also calculated the similarity
+scores using cosine similarity. we can also observe that when batman is given as an input to the algorithm, a list of movies that have
+a high similarity score gets printed as the output. Here the suggestions given by the algorithm are batman (the closest match to the
+input from the dataset), Batman Returns, Batman and Robin, the dark knight rises, Batman begins, etc. Which as we can tell can be
+deemed accurate.
+VI.
+CONCLUSIONS
+Our objective has been to develop a unique method for enhancing movie categorization, The fact that recommender systems require
+a lot of data to provide excellent recommendations is perhaps the largest difficulty they face. To provide reliable suggestions, large
+volumes of data are needed, which opens the door to further applications including the use of big data technologies and effective
+data processing procedures. Another issue is that data is always changing. Data or information is never static, and it fluctuates
+constantly as a result of changing user behaviors and preferences. This project could be used as a prerequisite for developing more
+robust content-based recommender systems. In this project, we have successfully implemented a movie recommendation system
+using TF-IDF vectorization and Cosine similarity. And we further plan to develop a hybrid movie recommendation system with
+better accuracy and efficiency.
+
+© IJRASET: All Rights are Reserved | SJ Impact Factor 7.538 | ISRA Journal Impact Factor 7.894 |
+
+1133
+
+International Journal for Research in Applied Science & Engineering Technology (IJRASET)
+ISSN: 2321-9653; IC Value: 45.98; SJ Impact Factor: 7.538
+Volume 10 Issue VIII Aug 2022- Available at www.ijraset.com
+REFERENCES
+[1]
+
+Abhishek Singh, Abhishek Rawat, j Shanmukh Rao, Samyak Jain, Uppalpati Yogendra Reddy" A research paper on machine learning-based movie
+recommendation system", International Research Journal of Engineering and Technology (IRJET)
+[2] N. Muthurasu, Nandhini Rengaraj, Kavitha Conjeevaram Mohan, "Movie Recommendation System using Term Frequency-Inverse Document Frequency and
+Cosine Similarity Method", International Journal of Recent Technology and Engineering (IJRTE) ISSN: 2277-3878, Volume-7 Issue-6S3 April 2019
+[3] P. Sabari Ramkumar, J. Aswin, "A Hybrid Movie Recommender system based on Content and Collaborative Filtering methods", 2019 JETIR March 2019,
+Volume 6, Issue 3
+[4] Yu Zhu, Jinhao Lin, Shibi He, Beidou Wang, Ziyu Guan, Haifeng Liu, and Deng Cai, Member, IEEE"Addressing the Item Cold-start Problem by Attributedriven Active Learning" JOURNAL OF LATEX CLASS FILES
+[5] Ranjan Kumar, S A Edalatpanah, Sripati Jha, Ramayan Singh, "A Novel Approach to Solve Gaussian Valued Neutrosophic Shortest Path Problems",
+International Journal of Engineering and Advanced Technology (IJEAT) ISSN: 2249 – 8958, Volume-8 Issue-3, February 2019
+[6] Choi, Sang-Min, Sang-Ki Ko, and Yo-Sub Han. "A movie recommendation algorithm based on genre correlations." Expert Systems with Applications 39.9
+(2012): 8079-8085.
+[7] Lekakos, George, and Petros Caravelas. "A hybrid approach for movie recommendation." Multimedia tools and applications
+[8] Zhang, Jiang, et al. "Personalized real-time movie recommendation system: Practical prototype and evaluation." Tsinghua Science and Technology
+[9] Rajarajeswari, S., et al. "Movie Recommendation System." Emerging Research in Computing, Information, Communication, and Applications. Springer,
+Singapore, 2019.
+[10] Ahmed, Muyeed, Mir Tahsin Imtiaz, and Raiyan Khan. "Movie recommendation system using clustering and pattern recognition network." 2018 IEEE 8th
+Annual Computing and Communication Workshop and Conference (CCWC). IEEE, 2018.
+
+© IJRASET: All Rights are Reserved | SJ Impact Factor 7.538 | ISRA Journal Impact Factor 7.894 |
+
+1134
+
+

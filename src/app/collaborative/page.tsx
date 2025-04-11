@@ -23,7 +23,8 @@ import {
   Avatar,
   useTheme,
   useMediaQuery,
-  Skeleton
+  Skeleton,
+  TextField
 } from '@mui/material';
 import { MovieOutlined, ThumbUp, Person, Star, Info, LocalMovies, ArrowForward } from '@mui/icons-material';
 
@@ -47,6 +48,8 @@ export default function CollaborativePage() {
   const [error, setError] = useState('');
   const [availableUsers, setAvailableUsers] = useState<string[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
+  const [searchId, setSearchId] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchAvailableUsers = async () => {
@@ -57,7 +60,9 @@ export default function CollaborativePage() {
           throw new Error('Kullanıcı listesi alınamadı');
         }
         const data = await response.json();
-        setAvailableUsers(data.user_ids.map(String));
+        const sortedUsers = data.user_ids.map(String).sort((a: string, b: string) => parseInt(a) - parseInt(b));
+        setAvailableUsers(sortedUsers);
+        setFilteredUsers(sortedUsers);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Kullanıcı listesi alınamadı');
       } finally {
@@ -67,6 +72,17 @@ export default function CollaborativePage() {
 
     fetchAvailableUsers();
   }, []);
+
+  useEffect(() => {
+    if (searchId.trim() === '') {
+      setFilteredUsers(availableUsers);
+    } else {
+      const filtered = availableUsers.filter(userId => 
+        userId.includes(searchId.trim())
+      );
+      setFilteredUsers(filtered);
+    }
+  }, [searchId, availableUsers]);
 
   const handleUserSearch = async () => {
     if (!selectedUserId) {
@@ -173,60 +189,104 @@ export default function CollaborativePage() {
           gap: 2, 
           alignItems: { xs: 'stretch', md: 'flex-end' } 
         }}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>Kullanıcı Seçin</InputLabel>
-            <Select
-              value={selectedUserId}
-              onChange={(e) => setSelectedUserId(e.target.value)}
-              disabled={loadingUsers}
-              label="Kullanıcı Seçin"
-              sx={{
-                bgcolor: 'rgba(255, 255, 255, 0.08)',
-                color: 'white',
-                '.MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'rgba(255, 255, 255, 0.2)',
-                },
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'rgba(255, 255, 255, 0.3)',
-                },
-                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'rgba(255, 255, 255, 0.5)',
-                },
-                '.MuiSvgIcon-root': {
+          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+            <FormControl fullWidth variant="outlined">
+              <InputLabel sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>Kullanıcı Seçin</InputLabel>
+              <Select
+                value={selectedUserId}
+                onChange={(e) => setSelectedUserId(e.target.value)}
+                disabled={loadingUsers}
+                label="Kullanıcı Seçin"
+                sx={{
+                  bgcolor: 'rgba(255, 255, 255, 0.08)',
                   color: 'white',
-                }
-              }}
-              MenuProps={{
-                PaperProps: {
-                  sx: {
-                    bgcolor: '#16213e',
+                  '.MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(255, 255, 255, 0.3)',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(255, 255, 255, 0.5)',
+                  },
+                  '.MuiSvgIcon-root': {
                     color: 'white',
-                    '& .MuiMenuItem-root': {
-                      '&:hover': {
-                        bgcolor: 'rgba(255, 255, 255, 0.1)',
-                      },
-                      '&.Mui-selected': {
-                        bgcolor: 'rgba(255, 255, 255, 0.15)',
+                  }
+                }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      bgcolor: '#16213e',
+                      color: 'white',
+                      maxHeight: 300,
+                      '& .MuiMenuItem-root': {
                         '&:hover': {
-                          bgcolor: 'rgba(255, 255, 255, 0.2)',
+                          bgcolor: 'rgba(255, 255, 255, 0.1)',
+                        },
+                        '&.Mui-selected': {
+                          bgcolor: 'rgba(255, 255, 255, 0.15)',
+                          '&:hover': {
+                            bgcolor: 'rgba(255, 255, 255, 0.2)',
+                          }
                         }
                       }
                     }
                   }
-                }
-              }}
-            >
-              {loadingUsers ? (
-                <MenuItem disabled>Kullanıcılar yükleniyor...</MenuItem>
-              ) : (
-                availableUsers.map((userId) => (
-                  <MenuItem key={userId} value={userId}>
-                    Kullanıcı {userId}
-                  </MenuItem>
-                ))
-              )}
-            </Select>
-          </FormControl>
+                }}
+                renderValue={(selected) => `Kullanıcı ${selected}`}
+                onOpen={() => setSearchId('')}
+              >
+                <Box sx={{ 
+                  p: 1, 
+                  position: 'sticky', 
+                  top: 0, 
+                  bgcolor: '#16213e', 
+                  zIndex: 1,
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <TextField
+                    autoFocus
+                    fullWidth
+                    placeholder="Kullanıcı ID'si girin..."
+                    variant="outlined"
+                    value={searchId}
+                    onChange={(e) => setSearchId(e.target.value)}
+                    onClick={(e) => e.stopPropagation()}
+                    onKeyDown={(e) => {
+                      if (e.key !== 'Escape') {
+                        e.stopPropagation();
+                      }
+                    }}
+                    size="small"
+                    sx={{
+                      bgcolor: 'rgba(255, 255, 255, 0.08)',
+                      input: { color: 'white' },
+                      '.MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'rgba(255, 255, 255, 0.2)',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'rgba(255, 255, 255, 0.3)',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'rgba(255, 255, 255, 0.5)',
+                      }
+                    }}
+                  />
+                </Box>
+                {loadingUsers ? (
+                  <MenuItem disabled>Kullanıcılar yükleniyor...</MenuItem>
+                ) : filteredUsers.length > 0 ? (
+                  filteredUsers.map((userId) => (
+                    <MenuItem key={userId} value={userId}>
+                      Kullanıcı {userId}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <MenuItem disabled>Kullanıcı bulunamadı</MenuItem>
+                )}
+              </Select>
+            </FormControl>
+          </Box>
           <Button
             variant="contained"
             onClick={handleUserSearch}

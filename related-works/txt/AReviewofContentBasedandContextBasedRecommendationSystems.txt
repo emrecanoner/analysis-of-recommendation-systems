@@ -1,0 +1,2791 @@
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+A Review of Content-Based and Context-Based
+Recommendation Systems
+https://doi.org/10.3991/ijet.v16i03.18851
+
+Umair Javed*, Kamran Shaukat*
+The University of Newcastle, Newcastle, Australia
+
+Ibrahim A. Hameed (*)
+Norwegian University of Science and Technology, Trondheim, Norway
+ibib@ntnu.no
+
+Farhat Iqbal, Talha Mahboob Alam, Suhuai Luo
+The University of Newcastle, Newcastle, Australia
+
+Abstract—In our work, we have presented two widely used
+recommendation systems. We have presented a context-aware recommender
+system to filter the items associated with user’s interests coupled with a contextbased recommender system to prescribe those items. In this study, contextaware recommender systems perceive the user’s location, time, and company.
+The context-based recommender system retrieves patterns from World Wide
+Web-based on the user’s past interactions and provides future news
+recommendations. We have presented different techniques to support media
+recommendations for smartphones, to create a framework for context-aware, to
+filter E-learning content, and to deliver convenient news to the user. To achieve
+this goal, we have used content-based, collaborative filtering, a hybrid
+recommender system, and implemented a Web ontology language (OWL). We
+have also used the Resource Description Framework (RDF), JAVA, machine
+learning, semantic mapping rules, and natural ontology languages that suggest
+user items related to the search. In our work, we have used E-paper to provide
+users with the required news. After applying the semantic reasoning approach,
+we have concluded that by some means, this approach works similarly as a
+content-based recommender system since by taking the gain of a semantic
+approach, we can also recommend items according to the user’s interests. In a
+content-based recommender system, the system provides additional options or
+results that rely on the user’s ratings, appraisals, and interests.
+Keywords—Context-aware, Content-based; Recommender systems, Contextual
+information, Ontology, Knowledge-based Recommendation, Hybrid
+Recommendation system
+
+*
+
+Umair Javed and Kamran Shaukat contributed equally as the first authors.
+
+274
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+1
+
+Introduction
+
+Recommender systems are software gears and techniques which offer
+recommendations for users. Recommendations can be of various kinds such as music
+tracks, news, and movie recommendations. The recommendation system provides
+recommendations by keeping user interest and using contextual information into
+account. The abundance of available information indicates the extreme need to
+overcome irrelevant information [1]. The recommender system is the building block
+of data filtering [2]. The aim of building a recommender system is to provide
+maximum information required for personalized learning and interests depending on
+the interactive patterns of the clients [3, 4]. Contextual information is effectively used
+to make significant recommendations in various fields. However, still, there is a great
+need to resolve issues like abundant information, data redundancy, and context
+redundancy to generate more effective recommendations [5]. The previously proposed
+existing approaches do not provide a thorough solution to these problems. To address
+the challenges of more effective recommendations generation, we have proposed a
+content-based recommender system and context-aware recommender system.
+Context-Aware Recommender Systems (CARS) is a specific category of
+recommender systems that takes contextual information as an input and provides
+additional useful suggestions. Simultaneously, the content-based framework shows a
+chart of the field of recommender systems and depicts the present period of
+recommendation strategies that are regularly described with three essential
+arrangements: content-based, collective, and hybrid proposition approaches, i.e.,
+hybrid.
+Context is a versatile idea studied across distinct analysis disciplines and
+computing, science, linguistics, philosophy, psychology, and structure sciences. The
+change over the conventional data recovery approaches originates from customer
+profiles that possess knowledge about customers' tastes, slants, and pre-requisites. The
+content recovery group has contributed a few methods that are being utilized as a part
+of content-based recommender frameworks. Content-based strategies are constrained
+by the components that are explicitly connected with the items prescribed by these
+items. In this way, to have an adequate arrangement of elements, the content should
+either be in a shape that can be parsed naturally by a PC or the components should be
+substantially allocated. Since content-based archives are generally addressed by their
+most vital and essential content/phrases, content-based frameworks cannot recognize
+an elegantly composed article. They must be kept in touch with one, on the off chance
+that they happen to utilize similar terms.
+The primary purpose of a recommender system is to provide users with
+recommendations. Other than providing significant recommendations, the
+recommender systems also successfully address the information overload dilemma.
+Most of the already existing recommender systems only target recommending the
+most relevant information related to the user’s search and contextual data. For
+example, time and place are not included in those systems. However, the currently
+used modern recommendation systems also include contextual information and
+personalization aspects into research [6].
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+275
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+Moreover, in various applications such as the holiday recommendation system,
+movie recommendation system, only users and items information is insufficient and
+contextual information is highly needed. For example, a travel recommender system
+provides suggestions for various suitable vocation packages according to different
+weathers.
+Recommender frameworks provide customized counsel to clients about things they
+may be keen on. These apparatuses help individuals proficiently oversee content overburden and lessen multifaceted nature while hunting down essential data. There are
+three fundamental components required to achieve personalization.
+• Database to store portrayals of the accessible things,
+• Profiles to model clients' inclinations and
+• Proposal procedures to generate customized proposals for every person.
+We have also discussed context-aware recommender systems that will provide us
+with the idea that contextual information can provide better recommendations. The
+main contributions of our work on context-aware recommender systems are:
+1. We have illustrated distributions of journal paper publications per year for
+ontology-based recommendations from 2003-2014
+2. We have investigated various information and recommendation representation
+techniques. We have also examined various types of context-aware learning
+resources. We have taken knowledge-based resources into consideration which are
+generated by ontology-based recommenders
+3. We have also reviewed future research ideas for recommender systems
+
+2
+
+Recommendation Techniques / Methods
+
+The semantic-based approach is ceaselessly being used in recommendation
+systems, and it has been proved as a better system for item recommendations. The
+currently widely used techniques are content-based, collaborative filtering, and hybrid
+techniques. By using any of these recommendation techniques and user preferences
+and appraisals, feasible information retrieval is possible. We have also used semanticbased recommendation systems. The most significant stride in the recommendation
+system is the extraction step. It brings about building up an archive subject guide by
+executing a web 2.0 administration to remove report elements. Recommendation
+arrangement of the examples enables educators to utilize straightforwardly the
+examples that offer answers for a specific issue that they face and enhances the
+powers. It likewise advances the input that is given by educators. It generates
+acceptable outcomes, enhances learning aptitudes, and opens the entryway to
+stimulate advancement and recommendation frameworks. In our assessment for the
+factual examination, we have considered factors, for instance, assorted qualities of the
+proposals, evaluations in types identified with the recommended programs, seeing
+propensities, and so on. All these factors together contribute to generating
+recommendations according to the client requirement. To generate efficiently related
+
+276
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+and accurate recommendations, it is highly needed to increase information access and
+personalization. Figure 1 indicates the number of papers and their year of publication,
+which we have considered in our work.
+
+Fig. 1. Distribution of research papers W R T the year published
+
+2.1
+
+Semantic reasoning/semantic-based approach
+
+The semantic-based approach is another data retrieval approach, along with content
+and collaborative approaches. The semantic standards are utilized to expand the
+concentrated learning way to recognize semantic connections among people. In
+particular, we have suggested a semantic model for every client who provides data
+about
+i.
+ii.
+iii.
+
+Interesting and boring TV shows for the client (called: positive and negative
+inclinations)
+The primary characteristics
+Class of these projects in which they are characterized in the TV ontology
+
+In past work, we researched a semantics-based way to deal with news proposals
+using equivalent word sets (synsets) from Word-Net [7]. The utilization of semantic
+Web advances to formally speak to information can give a few points of interest
+regarding customized suggestion frameworks: the dynamic contextualization of
+clients' interests in particular spaces, the assurance of between operability of
+framework assets, and the derivation of fragmented data about client's interests. We
+believe that the up-and-coming era of recommenders should concentrate on how their
+personalization procedures can exploit semantics and social information to enhance
+their proposals. Semantic suggestion frameworks are described by the joining of
+semantic information in their procedures with a specific end goal to enhance the
+proposal's quality. A conceivable approach to conquer issues of vagueness may be
+using an ontology, i.e., a controlled vocabulary of terms or ideas, and their semantic
+connections. We sometimes misuse suchlike semantic foundation information keeping
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+277
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+in mind the end goal to use effective surmising open doors for making client profiles
+because of the items these last clients obtained, more significant.
+The ontological domain takes the state of the semantic system that utilized ideas of
+client profile interests. Adjustment of Semantic by User Preferences is the most
+straightforward approach. The weights would be able to set by the client. In any case,
+it likewise has a few downsides since client inclinations are regularly to stay
+unaltered. Therefore, changes take time. Semantic Web structure is utilized for
+building the customized news administrations. It utilized Ontology for investigation
+of content, for the introduction of information, for semantic inquiries.
+Ontologies have turned into the foundation of the Semantic Web because of two
+reasons. From one viewpoint, formal conceptualizations empower deduction
+procedures to find new learning from the spoke to data. On alternate, ontologies
+encourage computerized learning sharing by permitting simple reuse amongst clients
+and programming specialists. Records disregarded are prepared, and critical faculties
+(disambiguated over Word-Net) are extricated and afterward joined to frame a
+semantic system. The modifying method powerfully predicts new reports on the
+premise of the semantic system. As the client peruses the reports, the framework
+fabricates the client show as a semantic system whose hubs speak to detects (not
+merely words) of the records asked for by the client. Semantic web innovation is that
+as it may, too dependent on how much creators comment on their site pages, and
+programmed page explanation is still in its earliest stages.
+2.2
+
+Ontology representation language
+
+The languages used in content-based recommender systems are OWL, SWRL,
+RDF, and semantic mapping rules, etc. Semantic Web analysts resort to ontologies,
+which speak to the learning about every framework (by utilizing classes, properties,
+and particular examples) and by various standardized arrangements (for example,
+RDF, RDFS, and OWL). Semantic Web scientists fall back on ontologies, which
+speak to the learning about the domain of every framework (by utilizing classes,
+particular occurrences, and properties) by various standardized configurations (for
+example, RDF, RDFS, and OWL). E-learning proposal in this structure depends on
+SWRL, OWL, and lead-based suggestion system [8]. The word Web of Data mostly
+used as Semantic Web, Web 3.0, or combined Data, shows another era of
+advancements in charge of developing today’s Web: A Web of connected data. The
+objective is to find new information from information utilizing standards (primarily
+RDF). We have proposed how Semantic Web headways and particularly ontologies
+can be used for upgrading functionalities of a present Java training system [9]. The
+outline for such an adaptable and customized mentoring framework that depends on
+Semantic Web instructions and developments has been displayed. The sort of a couple
+of ontologies has been proposed which identity with the parts of a coaching
+framework.
+Comprehensively, our substance-based technique chooses from the OWL
+philosophy examples of parts and properties suitable for the customer, by considering
+his/her inclinations. The data has extreme constraints demonstrated in HTML, which
+
+278
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+is intended for people to read instead of machines to translate and natural processes.
+We have partitioned the ontology into 2 sections for proficient store and questioning
+of OWL information. In this way, various levelled data of class and property is put
+away utilizing OWL, and occurrence data is utilized in a social database. Through
+them, we can obtain more efficiency. To build the ontology, we have made the facility
+domain and activity domain. Every domain comprises of subordinate ideas, occasions,
+and properties. The ontology recovery framework comprises of the crawler, the
+arranging module, the positioning module, and the recovery module. A crawler is
+used to parse the Web HTML records. The arranging module performs a
+characterization of parsed OWL/RDF. The positioning module selects the request
+made by space ontologies. Finally, the recovery module provides a client interface for
+recovered ontologies. For our framework, we make the ontology perception
+instrument and course suggestion framework utilizing Java. Specific domains can be
+achieved by using different ontologies languages. OWL and RDF are the most
+sequentially used languages that are used to build ontologies. Semantic rules are
+specifically designed to introduce inference rules. The ontology languages sometimes
+include reasoning and semantic rules that support content-based recommender
+systems. Also, these languages facilitate content-based systems to recommend
+different things to users according to their interests and profiles or rating.
+The semantic standards are utilized to expand the concentrated learning way to
+recognize semantic connections among people. SWRL is a rising XML-based
+structure for building administers over OWL ontology. Amid the run building stage,
+clients can compose rules utilizing a Horn-like language structure, and after
+translating into the SWRL arrange. The SWRL standards can be altered on the
+Protégé OWL stage by choosing the ''SWRL Tab". The inner database of our ontology
+is an OWL domain ontology developed by domain specialists and is questioned
+utilizing expanded SPARQL inquiries. Most of the semantic reasoning approach
+utilizes an idea-based way to enhance the client profile portrayal (client demonstrating
+stage) and utilize standard vocabularies and ontology language like OWL. By and
+large, utilizing things as labels (rather than marks) involves some fundamental
+favourable circumstances. Things are recognized by URIs and marked by RDFs: label
+or elective names: alt Label. This plan defeats existing semantic issues, for example,
+equivalent words, homonyms, acronyms, and diverse spelling, which current labelling
+frameworks endure, and by isolating the label's name from its recognizable proof.
+Furthermore, things may have an arrangement of further depicting RDF properties to
+recover similarities better.
+The cross-dialect client profile is performed by the Profile Learner, which gathers
+the profile as a double content classifier. The latest ways to deal with Cross-Language
+Retrieval essentially depend on the utilization of vast corpora like Wikipedia. The
+approach depends on Explicit Semantic Analysis (ESA), stretching out the first model
+to cross-lingual recovery settings [10]. Implementation of e-paper depends on the
+standard OWL dialect. We manufacture charts, not a tree, and even more
+straightforward—second strategy: Sem-News, which gives the casing work to
+comprehend the news. The utilization of faculties instead of words infers that the
+subsequent client demonstrates more precise and autonomous from the language of
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+279
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+the documents perused. This is especially critical for multi-language sites ending up
+exceptionally regular, particularly in news locales or the electronic business domain.
+The preferred primary standpoint in utilizing Word-Net is that types of languages
+other than English are presently accessible. The fundamental focal points of interest
+of the semantic approach are that semantic exactness increments and that the model is
+free from the dialect of the news. The inquiry terms are chosen for Web look by
+adjusting synopsis and natural language handling methods to remove catchphrases
+from privately put away desktop records. There exist a few standard execution
+dialects for ontology advancement.
+The primary propositions were RDF and RDFS, which added a formal semantic to
+the syntactic particulars in XML. Next, DAML and OIL emerged, which have been at
+long last combined and institutionalized by W3C as OWL, the most expressive
+language these days counting three sub-levels (Lite, DL, and Full). The language to
+use in the utilization of our thinking driven approach depends on the information and
+expressiveness necessities of the recommender framework.
+2.3
+
+Role of classification and categorization of previous researches
+
+The main objective of classifying and categorizing previously done work is to
+achieve an easy clear understanding of the implementation of the content-based
+recommender system in various fields. The goal is to elaborate on how the contentbased recommender systems have achieved better performance in the modern era. All
+the publications are based on content-based recommender systems. For example, the
+papers belong to the recommendation of news according to the user’s interests,
+content-based recommender system in e-learning, and recommend users traveling
+places [11].
+
+3
+
+Context-Aware Recommender Systems
+
+Context-aware recommender systems have been swiftly blooming as an effective
+way for relevant and useful learning retrieval according to contextual information.
+Recommendation techniques are classified into four different classes which include:
+Utility-based recommendation techniques, collaborative filtering, content-based
+recommendation techniques, and hybrid recommendation techniques. Each approach
+has its gains and losses. In our work, we have used collaborative filtering, contentbased, knowledge-based, ontology-based techniques, and hybrid recommendations.
+3.1
+
+Collaborative based filtering
+
+Collaborative filtering methods are based totally on gathering and analysing a large
+amount of data on user's behaviours, activities, or preferences and predicting what
+users will like based totally on their similarity. Some well-known e-commerce web
+sites propose such recommendations with success factors, based on a record of user
+
+280
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+actions, user ratings, or correlations between different users (collaborative filtering
+principles) [12].
+Some recommender frameworks, for example, Movielens [13], depend on
+collaborative filtering to customize the proposal of things. The PPG depends on a
+multi-operator design that encourages the mix of various client displaying methods to
+acknowledge the TV watcher's inclinations and the proposal of the projects to watch
+[14]. Since another thing has no perusing history, the separating and-personalization
+cannot depend on collaborative filtering (instead of different domains, for example,
+the proposal of books, films, and so on.), yet instead need to depend on content-based
+sifting, so once another thing lands to the News archive, the content-based sifting
+calculation can play out the essential coordinating with the clients' profiles and decide
+the level of importance of everything to the potential clients. Collaborative filtering
+recommender frameworks do this by requesting that individual’s rate expressly pages
+and after that prescribe new pages that comparative clients have appraised very—
+collaborative filtering strategy matched individuals with comparable inclinations to
+make proposals. The favourable principle position of CF finished content is called
+fresh. Another method joins Content Characteristics with a Collaborative Approach. It
+utilizes a forecast plot like the standard collective filtering called cooperation
+employing content. It does not figure out the ratings that give by the clients yet
+considering the content profiles of every client. The fundamental fault of this
+approach is that the closeness of clients depends on people's relationships between
+content weight vectors.
+The recommender systems use collaborative filtering, which is based on the taste
+information of the user to make automatic predictions. Collaborative filtering works
+on a principle that if two users have the same opinion over one matter, they are more
+likely to have a similar opinion on another different matter. Frameworks that utilize a
+keyword-based approach for content-based sifting face the issue of synonymy
+problem. Synonymy problems refer to the inability of the recommender system to
+detect the different words of the same meanings, and thus, the systems treat each word
+differently. The primary issue with collaborative filtering is collecting and weighing
+the taste information for neighbour users. If the user can achieve an immediate rating
+of the preferences, it can lead to accurate and precise recommendations.
+3.2
+
+Classification of publications
+
+In Figure 2, we have classified relevant research papers that we studied in our work
+for ontology-based recommender systems. A total of 15 journal paper publications
+relevant to ontology-based recommender systems for context-aware were analyzed
+and classified according to the year of publication. All the 15 papers classified in this
+review study were published between 2003 and 2014.
+A total of 10 of the papers were published between 2008 and 2014. From Figure 2,
+it is clear that there is significant growth in the number of publications on an
+ontology-based recommendation for context-aware from 2008 to 2014. Between 2003
+and 2007, there is only a single relevant journal publication for each year. There is a
+continuous increase between the years 2008–2014.
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+281
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+3.3
+
+Ontology-based recommenders in context-aware
+
+By using ontology representation language, we can achieve knowledge about
+specific content. It has been proved that the ontological user profile improves
+recommendation accuracy and diversity. In this approach, we have used different
+ontology languages such as OWL, RDF, DAML, OIL, Ontology-based personalized
+couple clustering (OBPC), Semantic, and XML.
+The Web Ontology Language is a family of representation languages, and that unit
+area is utilized to construct ontologies. The ontology is an accurate approach to
+address classification networks and classes. Mainly, it defines the knowledge
+associated with miscellaneous domain names. The OWL is characterized by formal
+linguistics, and it is concocted on an XML for objects known as the RDF. Each unit
+area is utilized for ontologies construction. Throughout the formation of the ontology
+system, we tend to utilize the domain ontology encoded with the RDF representation
+language.
+Classification is conducted based on the domain scope ontology. We have included
+domain ontology and product ontology in ontologies. A domain ontology represents
+the concepts that are related to the realm elements of the world, for example, biology.
+Product ontology is used for the description of products. Zhiwen Yu et al., [15]
+developed a context representation model of ontology-based recommender using
+OWL. To ensure interoperability with third-party services and applications. For
+instance, Yannick et al., [12] used an ontology-based approach to express not only the
+interests of the user for anything described in an ontology but also the target of
+content for anything described in an ontology. The target mechanism was used in this
+paper was to support context-based recommendations and can be used to support
+other matching strategies. Collaborative filtering strategies infer the suitability of an
+item to one or more types of users. If a user has bought an item, the system can infer
+that other similar users could be interested in the same item. Then the recommender
+can be added to this item as a target, which includes properties of the buyer’s profile.
+3.4
+
+Ontology-based recommendation techniques for context-aware
+
+Ontology-based recommendation techniques are classified in Table 1. Table 1
+shows that the ontology-based recommendation system and knowledge-based
+recommendation system are most commonly used by all the 15 recommender system
+users. In our survey, 11 out of the 15 recommenders used a hybrid technique isolated
+with collaborative filtering and content-based approach. Only 4 out of 15 ontologybased recommenders use collaborative filtering and content-based approach without
+isolation with the Hybrid recommender system.
+
+282
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+Table 1. Classification of Recommendation Techniques
+Reference
+[16]
+[12]
+[17]
+[18]
+[19]
+[7]
+[16]
+[20]
+[21]
+[22]
+[23]
+[24]
+[25]
+[26]
+
+3.5
+
+Hybrid
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+CF
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+CB
+X
+X
+X
+X
+X
+X
+X
+
+KB/OB
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+CA
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+FB
+-
+
+TA
+-
+
+Others
+-
+
+Recommended ontology-based learning resources for context-aware
+
+Table 2 tabulates the various types of an ontology-based recommender system. It is
+evident that 11 out of 15 publications that we reviewed in this survey recommends
+personalized curricula and learning materials, paths, and goals. For instance,
+Giancarlo Guizzardi (2014) used the Infraware platform as a learning resource.
+Yannick Naudet and Sabrina Mignon (2004) recommend TV programs and LOs as
+learning resources, and Ana Régia Neves and Célia Ghedini Ralha (2013) and Oh
+Byung Kwon (2003) used artificial intelligence resource for the agent-based
+approach.
+Table 2. Classification of ontology-based recommenders for context-aware and content base
+Citation
+
+Recommender
+system
+
+Recommendation
+technique
+
+Ontology-based
+news
+recommendation
+
+Ontology and
+semantic based
+Content-based
+recommender
+system
+
+Course ontology
+user's knowledge
+necessities
+acquisition for
+behaviors with
+learning systems
+
+Hybrid
+collaborating
+filtering
+
+Ontology-based
+architecture with
+recommendation
+strategy in java
+
+Ontology-based
+Collaborative
+recommender
+filtering
+system
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+Collaborative based
+
+Ontology
+Ontology
+Recommended
+Representation
+Type
+Resources
+Language
+News items
+recommendation
+Domain
+Semantic
+based on the
+ontology mapping rules user's interests
+and user
+profiling.
+To capture
+student's real
+requirements
+Course
+Semantic rules
+about the course
+ontology and q/a process
+and e-learning
+and user's
+knowledge.
+Ontology,
+Semantic
+tutoring system,
+OWL
+web
+recommendation
+ontology
+systems
+
+283
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+tutoring systems
+Towards the next
+generation of the
+recommender
+systems:
+
+Content-based
+collaborative
+based hybrid
+
+Travel ontology for
+Content and
+intelligent
+collaborative
+recommendation
+based
+system
+Content based
+and semantic
+Ontology-based
+based
+image retrieval
+recommender
+system
+
+Collaborative
+filtering,
+estimation
+methods,
+recommender
+systems
+extensions.
+
+Collaborative
+filtering
+
+Semantic
+ontology
+
+Semantic
+mapping rules
+
+Content-based
+
+Domain
+ontology
+
+Information
+RDF and OWL retrieval, HTML
+pages
+
+Content based
+
+Task and
+domain
+ontology
+
+Classifications,
+Semanticsfree-text
+based language descriptions, and
+image retrieval
+
+Learning object,
+knowledgebase,
+Content
+Domain
+recommendation,
+Content based
+Lo and axiom
+recommendation
+competency gap,
+ontology
+and sequencing
+rules
+Recommender
+Providing
+systems,
+Content-based
+Domain
+Entertainment by
+semantic
+and semanticontology RDF and XML
+CB Filtering and
+reasoning,
+Content and semantic and generic OWL, DAML
+semantic Reasoning based
+content-based
+and tv
+and DARPA
+recommender
+in Intelligent
+filtering,
+ontology
+system
+Recommender
+interactive digital
+systems
+television.
+Capturing
+knowledge of User
+Quickstep, multiDomain
+Machine
+Preferences
+Hybrid
+User Profiling
+class
+ontology Learning
+(Ontologies in
+Recommender
+Systems )
+A proposed
+Java
+semantic
+Domain
+Rule filtering
+Owl with swrl programming
+Recommendation Hybrid
+ontology
+language
+System for elearning
+A multi-purpose
+Content,
+Domain
+CSA
+Xml
+Content filtering
+Ontology-based
+collaborative
+ontology
+Approach
+A flexible and easy
+semantic inference
+methodology to
+Domain
+E-commerce and
+reason about user
+Hybrid
+Quickstep
+Owl and RDF
+ontology
+digital TV
+preferences in
+knowledge-based
+recommender
+systems
+Improving
+Ref.
+Web
+Semantic rules personalization,
+ontology- Based_ Content-based Collaborative
+Ontology
+user_ profiles
+clients profiles
+Ontology-based
+learning content
+recommendation
+
+284
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+Exploiting the Web
+of data in modelbased recommender
+systems
+Linked open data to
+support contentbased recommender
+system
+Multi-model
+ontology-based
+hybrid
+recommender in the
+eLearning domain
+User modeling and
+Recommendation
+Techniques
+
+Model-based
+
+Content/collaborative Domain
+filtering
+ontology
+
+OWL
+
+Svm, DB-Pedia,
+movielens,
+Recall, precision
+
+Content-based
+
+Lod-base
+
+Domain
+ontology
+
+OWL
+
+Vector space
+model, DB-pedia
+
+Hybrid
+
+Content-based and
+rule-based
+
+Domain
+ontology
+
+Semantic
+mapping and
+OWL
+
+Cluster-based
+recommender
+system
+
+Collaborative
+filtering
+
+Collaborative based
+
+General
+ontology
+
+―
+
+Guide user about
+tv programs
+
+Domain
+ontology
+
+OWL
+
+Semantically
+upgraded
+reasoning and
+recommender
+systems
+
+Domain
+ontology
+
+Semantic
+mapping and
+owl
+
+Semantic
+matching, news
+
+Domain
+ontology
+
+Semantic
+mapping , RDF,
+XML, DARPA,
+DAML
+
+Semantic
+reasoning and
+interactive digital
+television
+
+content and
+Taking advantage of
+collaborative
+semantics in rs
+filtering
+
+Hybrid
+
+Semantic news
+Recommendation Content based Content filtering
+using Word-net
+Entertainment by
+Content based
+Content-based
+Filtering and
+Content filtering
+Semantic Reasoning
+Filtering
+in Recommender
+Systems
+Ontology-based
+curriculum content Content filtering Content based
+SS
+Exploring synergies
+between contentbased filtering and
+activation in kb
+Ontological user
+Profiling in
+Recommender
+systems
+Learning Ontology
+User Profiles: A
+Semantic technique
+to Personalized
+Web Search
+An ontology
+content-based
+filtering method
+Capturing
+Knowledge Of user
+Preference:
+Ontologies in
+recommender
+system
+
+Content-based
+and
+collaborative
+Content-based
+and
+collaborative
+
+Hybrid
+
+Hybrid
+
+Learning route,
+Knowledge OWL , SWRL
+curriculum
+base
+and semantic
+content
+ontology Rules
+sequencing
+Domain
+and user
+ontology
+Domain
+and
+
+Semantic
+reasoning and
+personalization
+
+X-
+
+Artificial
+intelligence and
+user profiling
+
+Knowledge
+
+Content-based
+
+Content filtering
+
+Domain
+
+Content,
+collaborative
+
+Quickstep, multiclass
+
+Domain
+ontology
+
+Hybrid
+
+Quickstep, multiclass Machine
+learning
+
+Domain
+ontology
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+XML,OWL,
+DAML
+
+Python
+programming
+language and
+natural
+language
+OWL with
+semantic
+mapping rules
+
+KQML
+
+User context web
+search and
+information
+mining
+User Profiles
+
+User Profiling
+and machine
+learning
+
+285
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+Con-Tag: A
+Content,
+Semantic Tag
+Recommendation collaborative
+system
+Cross-Language
+Personalization
+through a Semantic
+Content
+contentbased
+Recommender
+System
+E-Paper: A
+Hybrid
+Personalized
+Mobile Newspaper
+Evaluation of an
+ontology-content
+Content,
+based filtering
+collaborative
+method for a
+personalized
+newspaper
+Exploiting Semantic
+Product
+Hybrid
+Descriptions For
+Recommender
+Systems
+A Hybrid
+Recommender
+System Guided by
+Hybrid
+Semantic User
+Profiles for Search
+in the Elearning
+Domain
+A Multilayer
+Ontology-based
+Hybrid
+Recommendation
+Model
+
+Content-based
+collaborative
+based
+
+Semantic web
+
+PIMO
+
+Quick step
+
+Multi
+Word Sense
+Word-Net Cross-language
+Disambiguation,
+personalization
+Lexical
+Multi Word-Net
+ontology
+
+Statistical language
+modeling,
+sophisticated
+
+Domain
+ontology
+
+Ling Pipe’s
+Language
+Model (LM)
+
+User Profiles
+
+Quickstep
+
+Domain
+ontology
+
+English
+
+User Profiles
+
+Vector space,
+Domain
+collaborative filtering ontology
+
+Content-based
+
+Hybrid
+
+Domain
+ontology
+
+Domain
+
+A Multi Purpose
+OB Approach for
+Content and semantic
+Content-based
+Domain
+Personalized
+based
+Content Filtering
+and Retrieval
+A Semantic W-B
+Approach for
+Domain
+Semantic-based Hermes
+Building
+ontology
+Personalized News
+services
+A hybrid system of
+pedagogical pattern
+recommendations
+Content,
+based on singular
+Collaborative
+value
+based
+decomposition and
+variable data
+attributes.
+
+286
+
+Hybrid
+
+Domain
+ontology
+
+RDF
+
+Social software
+
+Object-oriented
+User Profiles
+language
+
+Recommender
+system, search
+Semantic rules engine,
+clustering,
+semantic data
+
+―
+
+Hybrid
+recommender
+systems,
+communities of
+importance,
+ontology-based,
+client profiling
+
+Semantic-based,
+Semantic rules personalization,
+dynamic context.
+
+OWL
+
+Personalization
+
+RSPP
+
+Recommender
+systems;
+Pedagogical
+patterns;
+Singular value
+decomposition;
+Cosine
+Similarity
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+A contentcollaborative
+recommender that
+exploits Word-Net Hybrid
+based user profiles
+for neighborhood
+formation.
+Ontological content
+based Filtering for
+personalized
+Hybrid
+newspapers A
+method and its
+evaluation
+Improving User
+Modeling with
+Content-Based
+Informed
+recommender
+Recommendations
+for Smart Phones
+Applications Of
+user and contextaware
+recommendations
+using ontologies
+Context-aware,
+Ontology-based
+Recommendations
+Context-aware
+recommendations
+on Rails
+Cores: Contextaware, Ontologybased
+Recommender
+system for service
+Ontology-based
+Personalized and
+Context-aware
+Recommendations
+of News Items
+Ontology-based
+Matchmaking
+Approach for
+Context-aware
+Recommendations
+Ontology-Based
+Semantic
+Recommendation
+for E-learning
+Personalized
+Context-aware
+recommendations in
+SMARTMUSEUM:
+
+Content and CF
+
+Domain
+ontology
+
+Machine
+learning
+
+User modeling,
+Collaborative
+filtering,
+Content-based
+filtering, Hybrid
+recommenders
+
+System analysis SA
+
+Domain
+ontology
+
+RDF
+
+Personalization
+
+Content,
+collaborative
+
+Word Domain
+Disambiguation
+
+Domain
+ontology
+
+Hybrid
+
+Machine learning,
+text-mining
+
+Domain
+ontology
+
+Personalization
+System
+
+Domain
+ontology
+
+English, Italian,
+Natural
+Word-Net
+language
+processing
+Natural
+Consumer
+language
+Product
+
+System
+
+CF/CB/Hybrid
+
+Hybrid
+Recommender
+System
+Hybrid
+Recommender
+System
+Hybrid
+Recommender
+
+OWL and RDF
+
+Personalized
+curricula
+
+Generic
+AMAYA
+and
+recommender system domain
+ontology
+
+OWL
+
+Personalized
+curricula
+
+Recommendation on
+Domain
+rails, recommender
+ontology
+construction kit
+
+OWL and
+Semantic
+
+Personalized
+curricula
+
+Cores and kare
+
+Domain
+ontology
+
+OWL and RDF
+
+Infraware
+Platform
+
+CF/CB/Hybrid
+
+Personalized
+recommendation
+models
+
+Domain
+ontology
+
+OWL
+
+Personalized
+curricula
+
+CF/CB
+
+Matchmaking,
+Content Based
+
+Domain
+ontology
+
+OWL and RDF
+
+TV programs and
+Los
+
+Domain
+ontology
+
+OWL
+
+Learning
+material and
+prototyping
+
+Generic
+ontology
+
+OWL and RDF
+
+Learning paths &
+content
+
+System
+
+Semantic
+CF/CB
+Hybrid
+Recommender
+System
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+Recommendation,
+prototyping
+Collaborating and
+content-based
+
+287
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+A Framework for
+Context-Aware
+Service
+Recommendation
+Agent-based
+Architecture for
+Context-aware and
+Personalized Event
+Recommendation
+Recommetz: A
+context-aware
+Knowledge-based
+mobile
+recommender
+“I know what you
+need to buy”:
+context-aware
+multimedia-based
+An Approach for
+Context-aware
+Service Discovery
+and
+Recommendation
+Sigtur/EDestination:
+Ontology-based
+personalized
+recommendation of
+Tourism and
+Leisure Activities
+
+CF/CB/Hybrid
+
+Collaborating
+Filtering
+
+CF/CB
+
+Context-aware
+recommendation
+system
+
+Domain
+ontology
+
+RDF and OWL
+
+CF/CB/Hybrid
+
+Recommits
+
+Domain
+ontology
+
+OWL
+
+CF
+
+Collaborating
+Filtering
+
+Domain
+ontology
+
+DAML and OIL
+
+CF/CB/Hybrid
+
+Service
+Recommendation
+
+Domain
+ontology
+
+DAML And
+Learning goals
+OIL And RDF
+
+CF/Hybrid
+
+Sigtur/E-Destination Domain
+system
+ontology
+
+OWL
+
+Learning paths &
+content
+
+Domain
+ontology
+
+OWL
+
+Learning
+materials
+
+OWL and RDF
+
+Learning
+materials
+Artificial
+Intelligence
+Learning paths &
+content
+
+Artificial
+
+Hybrid
+Supporting
+contextaware Media Recommender
+
+4
+
+Domain
+ontology
+
+Comer platform
+
+Intelligence
+
+Content-Based Recommender Systems
+
+Content-based recommender systems are used in information retrieval. First, terms
+are assigned manually, which means while assigning terms manually, a technique has
+to be chosen which compares these terms from the information in the client’s profile,
+and a learning algorithm must be chosen to perform such techniques and then bring
+the related results to the client [27].
+The thoughts of term frequency (TF) and Inverse document frequency (IDF) are
+used as a piece of information recuperation structures and content-based isolating
+frameworks (for instance, content-based recommender). They are used to choose the
+relative centrality of a record /article / news thing / film, et cetera. Content-based
+filtering is another standard method while designing recommender systems is contentbased filtering. Content-based filtering methods are based on a description of the
+object and a profile of the person’s choice. In a content-based recommender system,
+key phrases are used to explain the items, and a personal profile is built to suggest the
+kind of item this user likes. In different words, these algorithms try to recommend
+objects that are just like those that a user favored in the past (or is examining inside
+
+288
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+the present). Numerous candidate items are compared with items previously rated by
+the user, and the best match result items are recommended. Yannick et al., [12] used a
+content-based algorithm to filter the best result recommended to a user.
+The main advantages of a content-based recommender system include
+transparency, independence, and recommendations for unclassified entities. The
+drawbacks include serendipity, partial content analysis, and overspecialization [22].
+A content-based recommender system generates recommendations provided by the
+user, either explicitly or by interface tapping. Considering that data, after the customer
+profile has been generated, it can be used to generate recommendations for the user.
+As the client provides more data sources or accepts activities suggestions, the engine
+becomes progressively precise. By using a content-based recommender system,
+instant results can be achieved. A content-based recommender system is much better
+than a collaborative system as it provides an easy implementation. We have used this
+system because it generated highly relevant and transparent results.
+Content-based separating strategies often use content extraction and
+characterization systems for building client profiles and additionally for portrayals of
+content, i.e., item profiles. These techniques have a few weaknesses, e.g., bungle
+between client profile things and profile terms, prompting low execution. Contentbased recommender frameworks prescribe items with comparable content to items the
+client has adored some time recently. Cases of the content-based proposal are Fab,
+which suggests site pages, and ELFI, which prescribes financing data from a database.
+Content-based sifting frameworks adjust their conduct to singular clients by taking in
+their inclinations from records that were at that point esteemed applicable. Contentbased sifting manages contrasting portrayals of the content of things (archives) with
+portrayals of per user's interests, keeping in mind the end goal to discover things that
+are most applicable to every client. This represents an errand of finding the best
+portrayal for both the things (thing profile) and the clients (client profile). A client
+profile speaks to a mapping of the real client's enthusiasm to a smaller model domain,
+which is an estimate of the client's real certifiable interests. A client's profile and a
+thing's profile should share a typical portrayal (for instance: portrayal by keywords) to
+empower coordinating between the profiles.
+The possibility of a Content-based recommender framework in an eLearning stage
+can be outlined as follows: We Give the addresses that the student needs to visit. The
+stage prescribes different addresses with content, which is like the content of the
+addresses saw by the student. We fabricate the learner’s ontology profile by
+extricating the student interests from that client's profile. Along these lines, we
+manufacture the ontology-based framework. Diverse content-based suggestion
+approaches have been utilized. Fundamentally, these methods are isolated in
+Heuristic-based and Model-based methodologies. The initial ones compute utility
+forecasts because of heuristic equations that are dependent on data recovery
+techniques. The content recommender framework is relying upon the level of
+similitude amongst things and articles that are required by the client in profile. It
+implies it is utilized to foresee the question, as per the client’s intrigue and if it has
+comparable content in another protest that is utilized to fulfil the client. These sorts of
+the framework have limitations too.
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+289
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+There are two essential excellent conditions of a content-based approach: to begin
+with, the model gauges, being established on resources rather than words, are more
+correct; second, the model is vernacular self-sufficient, allowing course in
+multilingual goals [28]. Content-based recommender frameworks mainly describe
+every shopper without matching his or her interests to different customers. They can
+give a rundown of content includes that clarifies why a thing has been prescribed.
+Such a rundown can reinforce customer trust in the suggestion and mirror the buyer's
+inclinations. In the content-based approach, shoppers can give some underlying data
+about the item to help the framework. Content-based filtering is situated considering
+the comparability of content (i.e., the client's profile and the records).
+4.1
+
+Ontology-based recommender system in content-based
+
+The ontology-based recommender system is a formal representation of a
+knowledge domain, whose semantics is defined by its composing concepts and
+relationships. Ontologies can be used to express things unambiguously [19]. An
+ontology is a conceptual model that can be applied to describe a domain of discourse,
+modelling it as a set of concepts and relations. Recommender systems are founded on
+different ontologies for instances domain ontology, task ontology, generic ontology.
+Domain ontology is widely used in content-based recommender systems. Several
+researchers have used ontologies to discover user preferences and innovations in
+content-based recommender systems. For ontology construction, we create an office
+area and office domain. Every domain comprises of subordinate ideas, occasions, and
+properties. The e-learning frameworks are based on the core of the domain ontology.
+If we can generate ontologies that can be used as the base for various frameworks,
+they can support sharing, reusability, and regular phrasing. We have considered the
+two-rule based domain ontology display, which contains learner’s advantage based
+and bunch based. The mentioned framework is convenient to be implemented in
+several recommendation systems without keeping the activity domain into
+consideration. To reinforce the ideas and connections in the application domain, we
+require conventional and transferable vocabulary. Semantic web people group resorts
+to ontologies, i.e., conceptualizations that recognize common ideas and connections in
+an application domain.
+
+290
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+Fig. 2. Distribution of journal papers
+
+Ontology is an emerging innovation for semantic information representation,
+which is associated with mastering systems. Our proposed technique models the
+client’s profiles by reutilizing the information that is accessible in the domain
+ontology, named as ontology profiles. The Hermes news portal (HNP) application
+enables clients to discover and execute inquiries by utilizing a space ontology. The
+main objective is to retrieve applicable news matters. The solitary, java-based
+apparatus is used to utilize different semantic web innovations. Hermes assesses a
+semantic approach that depends on ontology ideas. The methodologies that apply
+domain-based inferences comprise producing deductions about the client's interests in
+consideration of the various levelled structure characterized by the ontology. The
+studies have enabled us to determine client inclinations for a few classes of TV
+programs that are coarser-grained than those of the general ontology. We have
+proposed an additional content-based technique for sifting and positioning the
+pertinence of items for clients, which uses a progressive ontology. The Quickstep
+recommender framework is displayed. Two exact investigations assess it in a genuine
+work setting, measuring the viability of utilizing a progressive theme ontology
+contrasted and an extendable level rundown. We can demonstrate that the data gave
+by Web 2.0 administrations in a mix with a semantic Web ontology empowers the era
+of applicable semantic label suggestions for archives [29].
+Crossing over any barrier amongst labels and ontology, the approach portrayed the
+advancement of ontology in light of label uses. The utilization of an ontological
+content-based channel empowers personalization at each level of the ontology
+progression. Consequently, a client can get a customized rundown of things at the root
+level (i.e., the front page of the e-Paper) and at bringing down levels, as they select
+particular points to peruse, e.g., an arrangement of customized business-related news
+things are given when the client chooses to peruse the business class. There are
+inadequate ontological content-based profiling models available to articulate the client
+and content profiles in the ontology domain. All the issues related to the client’s
+profile and related links can be resolved by utilizing the ontology.
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+291
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+The ontological and theoretical demonstration was equally utilized as a part of the
+request to distinct client profiles. For instance, the four-level ontology is utilized as a
+part of the Quickstep framework to recommend papers to experts by consolidating
+content-based and collaborative filtering methods. In the initial segment, we have
+planned the domain ontology that utilized the word Net. Yet, the phrasing or strategy
+that is utilized as a part of the word Net is entirely different and more extensive than
+numerous hypermedia. So, there was the issue of vagueness. In the next part, we have
+outlined the learner’s ontology, so each learner has his own particular needs. This is
+removed from domain ontology and displayed as a subset ontology. We have
+dissected the structure of domain ontology and considered the semantic weights of the
+client profiles, so we have produced the domain idea space and generated assemblies
+of interests shared by specific users. Thus, those clients who share the same interests
+of a particular idea are congregated to form groups containing a higher weight of
+inclination. Domain ontology is considered as a crucial element in the models and
+systems.
+Ontology-based personalization is a critical assemblage of research. It is wealthier,
+more exact than a keyword-based model. It gives fundamental alternatives to the
+rudiments of client inclinations. It utilizes ontology content analysis for introducing
+knowledge and for semantic inquiries. Ontology is utilized to isolate news things and
+enables the client to choose the points of interest. Word sense is utilized to build the
+precision of the arrangement of news things. Besides, it is convinced that the
+discovered lexical overview significantly presents the domain ontology. An ontology
+that is utilized as a part of the instructive example plans to tackle the issue of structure
+and portrayal of the particular example. The ontology provides a consummate type of
+portrayal and characterizing standard vocabulary. Procedures that are utilized to
+create ontology are dependent on the domain of ontology. The general assumption
+that we get from these techniques is that the lexical approach depends on the WordNet
+that requires more changes to gain from semantic profiles. Thus, these upgrades
+coordinate domain ontology that gets all the more capable information approach.
+We have proposed a display of the client’s data by consistently incorporating
+information incorporating the prompt and prior responses of the client. Also,
+information gathered from a prior ontology is used as a portrayal of the domain of the
+intrigue. In the current structure, the client setting is addressed to utilize an
+ontological client profile. Initially, each ontological client profile is considered as an
+illustration of the reference ontology. The e-Paper framework is a customer service
+application. On the server-side, it computes news coming ceaselessly from news
+suppliers and groups every news thing to subject ideas utilizing news ontology.
+Ontology is a conceptualization of a domain into a human-reasonable framework. Our
+ontological way to deal with recommender frameworks offers many favorable
+circumstances and a couple of advantages.
+4.2
+
+Content-based recommender
+
+The main reason for analysis is to understand the content-based recommender
+system in different fields of today’s area of study. In a flexible semantic inference
+
+292
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+methodology, a proposal procedure utilizes content-based separating and a method
+that was about deserted years ago because of a few limitations uncertain in the best in
+art. In particular, our approach solves the overspecialization of the content-based
+suggestions that things like those the client knows. To battle the overspecialization of
+the explained suggestions, our system utilizes semantic derivation methods. Semantic
+ontologies give additional learning about the client premiums and permit the
+recommender framework to contrast them and the accessible information more
+efficiently. The proposed methodology is very sufficiently straightforward to be
+actualized in numerous recommender frameworks, disregarding their application
+domain. This activity portrays the Web assets by ontology and reasons for their
+semantics. Such thinking permits to derive semantic connections among the assets and
+find learning for improved data recovery tasks.
+We have proposed a semantic recommender framework for e-learning by methods
+in which learners will have the capacity to discover and pick the correct learning
+materials reasonable to their field of premium. Semantic web innovation puts more
+attention on learning portrayal and administration. The primary reason for the
+semantic Web is to empower mechanized coordinated effort over the Internet, because
+of metaphysics. Philosophy is the root of the semantic Web. By utilizing philosophy,
+the semantic methods are provided for traditional e-learning. The ontology presents
+materials that are identified with our space in e-learning and semantic connection
+between them. To produce a recommender framework, it is essential to characterize a
+customized strategy and suggestion calculation. The customized content suggestion is
+a noteworthy efficacy for modern eLearning frameworks. The recommender
+framework in e-learning utilizes predefined principles to channel data and prescribe
+content to learners. In e-learning, content sifting prescribes considering the
+comparability between content for one client while collaboratively separating
+functions considering closeness between client profiles. Content-based and
+collaborative filtering separating works contemplating rating framework. There is
+inconsistency with the e-learning frameworks, which requires sharing and reusability.
+The absence of reusability and share the capacity of current information in e-learning
+frameworks have emerged as the most significant challenge in the modern era. Our
+proposed system utilizes the semantic Web and ontology since ontology empowers
+information to be reusable and sharable because of its auxiliary nature [30]. Along
+these lines, a web-based learning condition is considered as an essential part of today's
+training.
+Most recommender frameworks utilize a straightforward twofold class approach,
+utilizing a client profile, and recognizing what is fascinating or not for the client. The
+Quickstep recommender framework utilizes a multi-class approach, permitting a
+profile for space ideas (inquire about paper points) to be manufactured [31]. The
+multi-class characterization is less exact than other double order frameworks.
+However, it permits particular class criticism and space information (through an “is -a
+progressive system”) to upgrade the profiling procedure. Two trials were led to survey
+observationally both the general adequacy of the Quickstep recommender framework
+and to evaluate the impact made by utilization of the ontology. We have utilized a
+philosophy to examine how area learning can help in the securing of client interests.
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+293
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+The reason for the two trials is to analyse a grouping of clients utilizing a content
+marking procedure with a grouping of clients utilizing a level rundown naming
+technique. Our theory for the content gathering's clean execution is that the is-a chain
+of command creates a rounder by adding general superclass themes if a client uses a
+particular subject.
+The average client profiling approach for recommender frameworks is contentbased, utilizing a paired model speaking to what clients find fascinating and
+uninteresting. This thought has prompted content-based recommender frameworks,
+which unpretentiously scrutinize the client's profiles on the Web and suggest new
+pages that relate to the client profile. With adequate positive and negative
+illustrations, current machine learning strategies can arrange new pages with fantastic
+exactness. Various machine learning techniques have already employed in the domain
+of healthcare [32, 33], finance [34], and surveillance [35]. Client's information prerequisite obtaining and an investigation is imperative for a customized or client
+versatile learning framework. Conventional instructive methodologies are typically
+instructor driven, not understudy driven, because they don't adequately consider the
+distinction in qualities between various understudies. Keeping in mind the end goal is
+to upgrade understudy driven learning and guideline effectiveness. Educators ought to
+comprehend the understood information pre-requisite of understudies to get ready and
+plan their showing materials for the understudies.
+We have frequently considered the rank of the learning pre-requisite instead of the
+correct estimation of it. This implies what a client's versatile or customized
+framework is most concerned with, and which components are required by an
+understudy. For a customized course plan in an eLearning framework, it is crucial to
+obtain the client’s additional information. In this framework, two methods have been
+proposed and executed for the essential data retrieval of the customers inside the elearning structure about the course content. The next era of e-learning is ready with
+the enormous market, a market, and advancement that incorporates getting the hang of
+planning, exhibiting, and online support.
+Moreover, everything hitting us electronically can be called e-learning. The
+conventional showing strategy is now demonstrating its confinements that
+understudies from various foundations are as yet given a similar learning substance in
+the meantime, and they may just enthusiasm for some portion of the entire learning
+content. We have examined the instrument with the learning base editorial manager.
+The goal of the semantic Web is to furnish conveyed data with exceedingly
+characterized meaning, the reason for people and machines. E-learning is an essential
+space that can be benefitted from semantic web advancement. Semantic web advances
+are a promising mechanical establishment for the coming era of e-learning
+frameworks [36].
+In this paper, we have proposed how Semantic Web headways and particularly
+ontologies can improve functionalities of a present Java instructing system. The plan
+for such a flexible and altered content structure relies on semantic web rules and
+developments. The type of a few ontologies has been proposed which relate to the
+parts of a content-based framework. Data over-burden is winding up noticeably
+extreme in our present-day times of broad communications, worldwide
+
+294
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+correspondence offices, and learning the client's capacity to recognize significant data
+from unessential. Like this, huge researchers have been investigating robotized sifting
+frameworks that provide clients with attractive and fascinating data [37]. In the most
+recent decade, the purposed recommender frameworks have been picking up energy
+as another effective method for unpredictability when hunting down essential data.
+Moreover, recommenders have additionally pulled in expanding open enthusiasm,
+levelling the ground for new business openings in various fields, for example, webbased business and Digital TV [38]. In these areas, their principal target is to filter
+through substantial arrangements of data and to choose those items the clients will
+acknowledge, considering their past interests, history of search, and statistic data. Our
+reasoning-based strategy has been executed in a recommender structure for Interactive
+Digital Television. We have observed that the proposed framework offers precise,
+updated proposals that would go unnoticed in the conventional strategies.
+In travel ontology for advance recommender frameworks, fly out data is expanding
+to offer the vacationers on the sites. Since there is a considerable amount of data given
+on the Web. The client gets puzzled in finding ideal data [39]. Keeping in mind the
+end goal is to discover the arrangement of these web issues, the possibility of the
+semantic Web has correspondence amongst humans and PC. The semantic Web is not
+just concentrating on the recovering techniques for content coordinating.
+Additionally, it can recover the semantic relationship of each protest utilizing the
+equivalent word, antonym, and hyponym connection of words.
+These days, there is an extensive variety of data, for example, the vacation spots,
+settlement, and nearby gourmet nourishment to claim the visitor on the Web. The
+travel specialist assumes an imperative part in both arranging and suggesting for
+customized travel course. Additionally, when surfing on web administrations, end
+clients progressively need more effective instruments to be able to do grouping and
+translating the tremendous measure of heterogeneous data accessible on the Web. Be
+that as it may, the data has extreme impediments due to showing in HTML, which is
+intended for people to peruse instead of machines to translate and naturally handle. In
+this framework, we have proposed the smart suggestion framework in light of travel
+ontology. In like manner, we have utilized the data of Jeju (located in southern Korea,
+is renowned for a volcanic island), for instance, lodging, fascination, and so on. The
+proposed framework can prescribe vacationer more smart data utilizing properties and
+connections of travel ontology. The framework oversees discovering customized
+interests and plotting area of voyager on the AlMap. The Jeju travel ontology
+comprises of extricating of various leveled data and example data. Our framework can
+recover Jeju travel data more effortlessly, and we bolster Jeju travel course
+suggestions relying upon ontology (inclination profile and exchange profile).
+Likewise, it is mapping amongst representation and Almap (a sort of Digital guide)
+and application programming interface (API). If the client needs an incredibly delicate
+area. We can show precise areas from recovery utilizing this computerized outline. In
+this framework, we have proposed an insightful suggestion framework because of Jeju
+travel ontology to take care of many answers-issue. The proposed framework can
+prescribe the traveler more useful data utilizing properties, connections of travel
+ontology and help them to expect disarray of streets or attractions.
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+295
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+While most methodologies explore traditional data recovery procedures, e.g.,
+closest neighbour inquiries in metric domains, accessibility, and utilization of
+wealthier semantic meta-data about items may additionally enhance suggestion
+quality essentially. Gigantic scientific categorizations for item orders are
+transitioning, e.g., the United Nations Standard Products and Services Classification
+(UNSPSC, for example, Amazon.com order scientific categorizations for books,
+DVDs, CDs, and clothing [40]. We have battled the overspecialized idea of customary
+content-based recommender frameworks. It proposed things fundamentally the same
+as those the client knows (principally because of the selection of syntactic
+coordinating methods).
+The oddity is that our content-based approach defeats this impediment without
+considering the inclinations of different people, which was the central arrangement
+proposed so far in writing at the costs of presenting other extreme disadvantages. Our
+approach is non-sufficiently specific to be utilized as a part of a wide assortment of a
+domain, furthermore, recommender frameworks. The proposition has been
+preparatory assessed by statistics-driven tests, including genuine clients in the
+proposal of Digital TV content. The outcomes uncover the clients' fulfilment
+concerning the precision and assorted qualities of the thinking driven content-based
+suggestions. Moreover, in the word-based case, we considered a word list record
+portrayal, where each word has a score contrarily relative to the word recurrence in
+the news corpus. We have introduced another rendition of Site IF, a recommender
+framework for a Website of multilingual news. Exploring content-based archive
+portrayal, we have depicted a model of the client's advantages in light of word
+faculties rather than merely on words [41].
+We have made informed recommender to address the issue of utilizing purchaser
+assessment about items and communicated online in freestyle content to create item
+suggestions. Our procedure manufactures a gathering of necessary customer item
+audits. The strategy for gathering audits takes after the calculations for robotized news
+extraction from news destinations. Once the item's feelings mining base was
+populated, we have utilized the content mining methods to remove valuable data from
+survey remarks. At this point, we will discuss the general system for mechanizing the
+utilization of customer audits and the structure's segments. We have utilized existing
+calculations, for instance, in the content mining process because we will show our
+approach's qualities. The framework can give the client a rundown of some of these
+supporters, and their past buys to clarify and make the client sure about the proposal.
+Research utilization of audits in a recommender framework is still in its earliest
+stages. To the best of our insight, this is the primary endeavour to construct a
+recommender framework in light of survey remarks in free shape content.
+Different analysts have utilized surveys to give some clarification about an item
+proposal. Despite these issues, we have considered the outcomes we got to be great
+since we can precisely outline an expansive part of a survey into the predefined
+ontology. Executing this technique gives our framework a chance to utilize important
+printed data to make suggestions. This enables our framework to conquer the frosty
+begin problem, which challenges collaborative filtering procedures. Numerous
+personalization approaches depend on a client profile, which is an information
+
+296
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+occasion of a client demonstrate that is caught considering the client's communication.
+Client profiles may incorporate statistic data and, besides, address the interests and
+inclinations of the client. Client profiles that are kept up after some time can be
+arranged into here and now what is more, long term profiles. Here and now, profiles
+can be used to monitor the client's later and quicker evolving interests. Long term
+profiles reveal client intrigues that are generally stable a time duration. A spreading
+enactment calculation is utilized to keep up and incrementally refresh the intrigue
+scores considering the client's progressing conduct. We have demonstrated that repositioning the list items is related to the intrigue scores. The semantic proof caught in
+an ontological client profile empowers a versatile framework to exhibit the most
+important outcomes to the client. If the keywords of the client profile are not the same
+as those of reports, important archives may be missed. However, a specific word may
+have more than one value, prompting unessential archives being recovered.
+4.3
+
+Recommendation technique(S) recommenders for content-based
+
+Table 3 presents the classification of recommendations.
+Table 3. Classification of recommendation techniques
+Citation
+[42]
+[43]
+[9]
+[39]
+[11]
+[36]
+[44]
+[31]
+[8]
+[45]
+[38]
+[37]
+[46]
+[40]
+[47]
+[14]
+[48]
+[44]
+[49]
+[41]
+[50]
+[27]
+[51]
+[31]
+[52]
+[10]
+[53]
+
+Hybrid
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+CF
+―
+X
+X
+X
+―
+―
+―
+―
+―
+X
+―
+X
+X
+―
+―
+X
+―
+―
+―
+X
+X
+―
+X
+―
+X
+―
+―
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+CB
+X
+―
+―
+X
+X
+X
+X
+―
+―
+X
+―
+X
+X
+X
+X
+―
+X
+X
+X
+X
+X
+X
+X
+―
+X
+X
+X
+
+KB/OB
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+CA
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+
+FB
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+
+TA
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+
+Others
+X
+―
+―
+―
+X
+―
+X
+X
+X
+―
+X
+―
+―
+X
+X
+―
+―
+―
+―
+―
+―
+―
+―
+X
+X
+X
+―
+
+297
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+[54]
+[29]
+[55]
+[7]
+[45]
+[56]
+[57]
+[58]
+[59]
+[28]
+[60]
+
+5
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+X
+X
+X
+X
+―
+―
+X
+X
+―
+X
+―
+
+X
+X
+X
+X
+―
+X
+X
+―
+X
+―
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+―
+
+X
+X
+X
+―
+X
+X
+―
+―
+X
+―
+X
+
+Hybrid Recommender System
+
+Recent studies have established that a hybrid method, combining collaborative
+filtering and content-based filtering may be extra effective in a few cases. Hybrid
+strategies can be carried out in numerous approaches: by way of making contentbased and collaborative-based predictions one at a time and after that combining
+them; or by adding content-based abilities to a collaborative-based approach (and vice
+versa); or by unifying the methods into one version [20]. It is a combination of
+content-based filtering and collaborative based filtering. A hybrid recommender joins
+content-based and CF strategies under a solitary system. Content and CF have
+numerous impediments and can be secured from the Hybrid arrangement of the
+proposal [7]. Hybrid framework joins with content and CF with one of the following
+methodologies:
+• First, execute all techniques and afterward consolidate the outcomes
+• Blend a few components of content with the shared approach
+• Incorporate some CF attributes with the content approach
+The strategy that we have used to outline a hybrid framework depends on a blend
+of collaborative and content-based that learn and dissect client profile that because of
+content by utilizing diverse techniques. Our hybrid data filtering approach allows
+appropriately gathering profile closeness between two given clients. However, the two
+operators have not evaluated any items in like manner.
+
+6
+
+Analysis of Publications
+
+We have carried several studies on the ontology-based recommendation in contextaware from the year 2003 to 2014. For instance, [15] designed an architecture named:
+The CoMeR architecture to support media recommendation, adaptation, and delivery
+for smartphones. By using CoMeR, they have made a context-aware movie
+recommendation system for cell phones called ContAwareMovie. This
+recommendation system recommended movies based on the context information,
+
+298
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+which used hybrid recommendation techniques and ontology-based knowledge
+structures in its recommendation approach.
+Similarly, [12] presented a personalization system in his work, which used
+ontology to represent knowledge and matchmaking algorithm for multimedia content
+recommendations. The target mechanism was used to support the context-based
+recommendation. Collaborative filtering techniques were used to present and item
+which suit one or more type of users. Tim et al., [17] proposed a framework named:
+Discover, which can integrate context information in the recommendation process.
+Discover used hybrid recommender systems as it provides integration of many
+recommender techniques and context information. Christian Räck et al., [18]
+suggested AMAYA recommender system that could deliver convenient news articles
+for each user. Giancarlo et al., [19] developed a recommender system named: COReS
+(context-aware. Ontology-based recommender system for service recommendation),
+which used the abilities of the Infraware platform to support service selection by
+making services offered by this program more efficient, personalized, and proactive
+and then it will also satisfy the needs of a user in its context.
+Iván et al., [7] proposed a hybrid recommender system named: News@hand, which
+combined content features and collaborative information to make relevant news
+suggestions according to the user's profile and user's contextual information. They
+combined the ontology-based personalization system with context-aware
+recommendations to give accurate suggestions. Yannick et al., [12] proposed an
+ontology-based matchmaking approach for context-aware recommendations. They
+have presented a survey of an ontology set and a matchmaking algorithm that makes
+accurate recommendations by keeping a given user profile and situation, interests, and
+associated context. Yuichi Nakamura et al., [16] proposed an ontology-based
+methodology for semantic recommendations.
+InnarLiiv et al., [20] implemented a recommendation platform named:
+SMARTMUSEUM. SMARTMUSEUM recommendation platform combines a
+semantics-based approach and ontologies-based method with data mining and
+statistical techniques. They have presented the architecture and the main techniques of
+this system. Dong Liu et al., [21] proposed an ontology-based context model which
+uses RDF rectification and OWL to explain temporal characteristics and to derive
+high-level contexts from raw data-keeping given user's contextual information. They
+also improved the SAW algorithm to deal with semantics and proposed appropriate
+service to the user. Ana Régia et al., [22] proposed an agent-based architecture for
+context-aware and personalized event recommendation systems based on ontology
+and spreading algorithms to offer context-aware recommender systems an intelligent
+processing technique.
+The proposed agent-based architecture was authenticated with the modelling and
+implementation of eAgora. Luis Omar et al., [23] proposed a recommender system
+named: RecomMetz, which is a context-aware mobile recommender system and is
+based on semantic web technologies, determines which movie showtime are to be
+presented to a user keeping given the location, time, and the crowd. Antonio Moreno
+et al., [24] implemented SigTur / E-destination for tourism and leisure interests. They
+used domain ontology to account for each user; the system will take as much
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+299
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+information about the user as possible to provide an accurate recommendation. OH
+ByungKwon et al., [25] developed a prototype agent-based system named: Contextaware multimedia Agent (CAMA). They focused on how the semantic Web
+developed a context-aware recommendation system, and to determine a way to
+represent multimedia-based ontology by extending ARG. Hua Xiao et al., [26]
+proposed a context modelling method that could handle various context types and
+values dynamically. They also used ontologies to enhance what a user might need.
+Some other ontologies are also used, which include generic ontology and reference
+ontology. Moreover, ontology-based representation language is widely used is OWL.
+Other languages that are used along with or separately from OWL include RDF
+representation, DAML (Agent markup language), Semantic, and OIL.
+Other learning resources include artificial intelligence, prototyping and TV
+programs, and Los. The recommended resources that are presented in Yannick Naudet
+[12], Tim Hussein, Timm Linder [17], Christian Räck [18] recommended
+personalized curricula. In contrast, Yuichi Nakamura [16], Innar Liiv [20], Tanel
+Tammet [20], Zhiwen Yu [16], and Xingshe Zhou [15] recommended learning
+materials, paths, and goals.
+
+7
+
+Conclusion and Future Work
+
+We have presented a brief review of ontology-based recommendation for contextaware. Our work discloses that the ontology-based recommendation system,
+combined with other recommendation techniques, is universally used to recommend
+context-aware resources.
+Ontology domain knowledge can efficiently contribute to enhance the accuracy and
+quality of recommendations. However, cold-start drawbacks remain the same.
+For future work, there are three context-aware recommendation system)
+architectural models that are contextual pre-filtering, contextual post-filtering, and
+contextual modelling. We will try to overcome challenges that we face in pre-filtering
+models that are context over-Specification that include the Sparsity problem: overly
+specified context may not have enough training examples for accurate prediction
+Generalization in which we use latent factors models or dimensionality reduction
+approaches to overcome this problem. We can further apply context-aware splitting
+approaches based on contextual pre-filtering to produce a 2D data set that
+incorporates context information associated with preference results. This will also
+lead to the sparsity problem, which we will need to overcome. We can also introduce
+semantics into the similarity of contexts to further alleviate the sparsity of contexts.
+We can also introduce factorization in contextual modelling to fit the data using
+various models. One of them is tensor factorization that can extend the twodimensional matrix factorization into a multi-dimensional version of the same
+problem and then multi-dimensional into lower-dimensional representation. We can
+also implement various statistics and data mining techniques present to our data to get
+accurate and more specific contextual information.
+
+300
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+The research on all the publications concluded that: in a content-based
+recommender system, the system will recommend users all the sites and data or
+information in which the user is interested or based on the client’s interests or recent
+searches and ratings different sites. All the papers are directly relevant to e-learning
+and many different fields in content-based recommender systems. Using semanticbased, we can also recommend news items to the users, depending on their interests.
+After our research about recommender systems, we concluded that content,
+collaborative, and semantic are the significant and useful recommender systems to
+recommend users and clients according to their needs and interests.
+7.1
+
+Possible extensions
+
+• Other essential research methods that have been investigated in recommender
+frameworks are writing incorporate logic, dependability, versatility, and security
+issues of recommender frameworks
+• In the suggestion procedure, the engine analyses the things that were evaluated by
+the client with the things he did not rate and searches for likenesses. Those things
+that are, for the most part, like the decidedly evaluated ones, will be prescribed to
+the client. We should prescribe the user not only the things that he rated good
+points but also the things he searches frequently
+• In this recommender system, we mostly used domain ontology in suggesting items
+and things according to the client’s interests and likeness. We may also use task
+ontology instead of the domain
+• We can also design content-based recommender systems in XML and jess rules,
+and we can also implement KB/OB recommendation techniques
+• We can also apply content based on many domains to set the user profile
+• Content-based fuzzy techniques can also be implemented to determine the items
+related to the user’s interests. A fuzzy item representation technique will find
+similar measures
+• The recommendation system can be extended in multi-criteria ratings
+• More comprehensive methods can provide much better suggestions
+7.2
+
+Limitations
+
+• To make the ontologies a challenging task and it requires a lot of skills and hard
+work
+• There are many obstacles in content-based recommender systems, like experienced
+researchers, who can only work on these systems
+
+8
+
+References
+
+[1] R. S. Kanmani and B. Surendiran, "Context-Based Social Media Recommendation
+System," Recommender System with Machine Learning and Artificial Intelligence:
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+301
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+Practical Tools and Applications in Medical, Agricultural and Other Industries, p. 237,
+2020. https://doi.org/10.1002/9781119711582.ch12
+[2] B. Bouihi and M. Bahaj, "Ontology and rule-based recommender system for e-learning
+applications," International Journal of Emerging Technologies in Learning (iJET), vol. 14,
+no. 15, pp. 4-13, 2019. https://doi.org/10.3991/ijet.v14i15.10566
+[3] Q. Zhang, D. Yang, P. Fang, N. Liu, and L. Zhang, "Develop Academic Question
+Recommender Based on Bayesian Network for Personalizing Student’s Practice,"
+International Journal of Emerging Technologies in Learning (iJET), vol. 15, no. 18, pp. 419, 2020. https://doi.org/10.3991/ijet.v15i18.11594
+[4] S. Kausar et al., "Mining Smart Learning Analytics Data Using Ensemble Classifiers,"
+International Journal of Emerging Technologies in Learning (iJET), vol. 15, no. 12, pp. 81102, 2020. https://doi.org/10.3991/ijet.v15i12.13455
+[5] L. Chen and M. Xia, "A context-aware recommendation approach based on feature
+selection," Applied Intelligence, pp. 1-11, 2020.
+[6] S. Renjith, A. Sreekumar, and M. Jathavedan, "An extensive study on the evolution of
+context-aware personalized travel recommender systems," Information Processing &
+Management, vol. 57, no. 1, p. 102078, 2020. https://doi.org/10.1016/j.ipm.2019.102078
+[7] I. Cantador, A. Bellogín, and P. Castells, "A multilayer ontology-based hybrid
+recommendation model," Ai Communications, vol. 21, no. 2-3, pp. 203-210, 2008. https://
+doi.org/10.3233/aic-2008-0437
+[8] S. Shishehchi, S. Y. Banihashem, and N. A. M. Zin, "A proposed semantic
+recommendation system for e-learning: A rule and ontology-based e-learning
+recommendation system," in 2010 international symposium on information technology,
+2010, vol. 1: IEEE, pp. 1-5. https://doi.org/10.1109/itsim.2010.5561329
+[9] B. Vesin, M. Ivanović, A. Klašnja-Milićević, and Z. Budimac, "Ontology-based
+architecture with recommendation strategy in java tutoring system," Computer Science and
+Information Systems, vol. 10, no. 1, pp. 237-261, 2013. https://doi.org/10.2298/csis111231
+001v
+[10] P. Lops, C. Musto, F. Narducci, M. De Gemmis, P. Basile, and G. Semeraro, "Crosslanguage personalization through a semantic content-based recommender system," in
+International Conference on Artificial Intelligence: Methodology, Systems, and
+Applications, 2010: Springer, pp. 52-60. https://doi.org/10.1007/978-3-642-15431-7_6
+[11] E. Hyvönen, S. Saarela, A. Styrman, and K. Viljanen, "Ontology-Based Image Retrieval,"
+in WWW (Posters), 2003.
+[12] Y. Naudet, L. Schwartz, S. Mignon, and M. Foulonneau, "Applications of user and
+context-aware recommendations using ontologies," in Proceedings of the 22nd Conference
+on l'Interaction Homme-Machine, 2010, pp. 165-172. https://doi.org/10.1145/1941007.194
+1038
+[13] B. N. Miller, I. Albert, S. K. Lam, J. A. Konstan, and J. Riedl, "Movielens unplugged:
+experiences with an occasionally connected recommender system," in Proceedings of the
+8th international conference on Intelligent user interfaces, 2003, pp. 263-266. https://doi.
+org/10.1145/604045.604094
+[14] L. Ardissono, C. Gena, P. Torasso, F. Bellifemine, A. Difino, and B. Negro, "User
+modeling and recommendation techniques for personalized electronic program guides," in
+Personalized Digital Television: Springer, 2004, pp. 3-26. https://doi.org/10.1007/1-40202164-x_1
+[15] Z. Yu, X. Zhou, D. Zhang, C.-Y. Chin, X. Wang, and J. Men, "Supporting context-aware
+media recommendations for smart phones," IEEE Pervasive Computing, vol. 5, no. 3, pp.
+68-75, 2006. https://doi.org/10.1109/mprv.2006.61
+
+302
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+[16] Z. Yu, Y. Nakamura, S. Jang, S. Kajita, and K. Mase, "Ontology-based semantic
+recommendation for context-aware e-learning," in International Conference on Ubiquitous
+Intelligence and Computing, 2007: Springer, pp. 898-907. https://doi.org/10.1007/978-3540-73549-6_88
+[17] T. Hussein, T. Linder, W. Gaulke, J. Ziegler, and L. Bergmann, "Context-aware
+recommendations on rails," in Workshop on Context-Aware Recommender Systems
+(CARS-2009) in conjunction with the 3rd ACM Conference on Recommender Systems
+(ACM RecSys 2009), New York, NY, USA, 2009. https://doi.org/10.1145/1639714.1639
+806
+[18] C. Rack, S. Arbanowski, and S. Steglich, "Context-aware, ontology-based
+recommendations," in International Symposium on Applications and the Internet
+Workshops (SAINTW'06), 2006: IEEE, pp. 7 pp.-104. https://doi.org/10.1109/saintw.2006.13
+[19] A. Costa, R. Guizzardi, G. Guizzardi, and J. Pereira Filho, "COReS: Context-aware,
+Ontology-based Recommender system for Service recommendation," in Proc. 19-th Intern.
+Conf. on Advanced Information Systems Engineering (CAISE07), 2007.
+[20] I. Liiv, T. Tammet, T. Ruotsalo, and A. Kuusik, "Personalized context-aware
+recommendations in SMARTMUSEUM: combining semantics with statistics," in 2009
+Third International Conference on Advances in Semantic Processing, 2009: IEEE, pp. 5055. https://doi.org/10.1109/semapro.2009.25
+[21] D. Liu, X. W. Meng, and J. L. Chen, "A framework for context-aware service
+recommendation," in 2008 10th International Conference on Advanced Communication
+Technology, 2008, vol. 3: IEEE, pp. 2131-2134. https://doi.org/10.1109/icact.2008.44942
+10
+[22] A. R. d. M. Neves, Á. M. G. Carvalho, and C. G. Ralha, "Agent-based architecture for
+context-aware and personalized event recommendation," Expert Systems with
+Applications, vol. 41, no. 2, pp. 563-573, 2014. https://doi.org/10.1016/j.eswa.2013.07.081
+[23] L. O. Colombo-Mendoza, R. Valencia-García, A. Rodríguez-González, G. AlorHernández, and J. J. Samper-Zapater, "RecomMetz: A context-aware knowledge-based
+mobile recommender system for movie showtimes," Expert Systems with Applications,
+vol. 42, no. 3, pp. 1202-1222, 2015. https://doi.org/10.1016/j.eswa.2014.09.016
+[24] A. Moreno, A. Valls, D. Isern, L. Marin, and J. Borràs, "Sigtur/e-destination: ontologybased personalized recommendation of tourism and leisure activities," Engineering
+applications of artificial intelligence, vol. 26, no. 1, pp. 633-651, 2013. https://doi.org/10.
+1016/j.engappai.2012.02.014
+[25] O. B. Kwon, "“I know what you need to buy”: context-aware multimedia-based
+recommendation system," Expert Systems with Applications, vol. 25, no. 3, pp. 387-400,
+2003. https://doi.org/10.1016/s0957-4174(03)00063-0
+[26] H. Xiao, Y. Zou, J. Ng, and L. Nigul, "An approach for context-aware service discovery
+and recommendation," in 2010 IEEE International Conference on Web Services, 2010:
+IEEE, pp. 163-170. https://doi.org/10.1109/icws.2010.95
+[27] A. Sieg, B. Mobasher, and R. D. Burke, "Learning ontology-based user profiles: A
+semantic approach to personalized web search," IEEE Intell. Informatics Bull., vol. 8, no.
+1, pp. 7-18, 2007.
+[28] B. Magnini and C. Strapparava, "Improving user modelling with content-based
+techniques," in International Conference on User Modeling, 2001: Springer, pp. 74-83.
+https://doi.org/10.1007/3-540-44566-8_8
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+303
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+[29] C.-N. Ziegler, L. Schmidt-Thieme, and G. Lausen, "Exploiting semantic product
+descriptions for recommender systems," in Proceedings of the 2nd ACM SIGIR Semantic
+Web and Information Retrieval Workshop, 2004, pp. 25-29.
+[30] L. aDepartament de Llenguatges i Sistemes Informàtics, "Taking advantage of semantics
+in recommendation systems," in Artificial Intelligence Research and Development:
+Proceedings of the 13th International Conference of the Catalan Association for Artificial
+Intelligence, 2010, vol. 220: IOS Press, p. 163.
+[31] S. E. Middleton, D. C. De Roure, and N. R. Shadbolt, "Capturing knowledge of user
+preferences: ontologies in recommender systems," in Proceedings of the 1st international
+conference on Knowledge capture, 2001, pp. 100-107. https://doi.org/10.1145/500737.500
+755
+[32] T. M. Alam and M. J. Awan, "Domain Analysis of Information Extraction Techniques,"
+International Journal of Multidisciplinary Sciences and Engineering, vol. 9, no. 6, pp. 1-9.
+[33] M. Z. Latif, K. Shaukat, S. Luo, I. A. Hameed, F. Iqbal, and T. M. Alam, "Risk Factors
+Identification of Malignant Mesothelioma: A Data Mining Based Approach," in 2020
+International Conference on Electrical, Communication, and Computer Engineering
+(ICECCE), 12-13 June 2020 2020, pp. 1-6, https://doi.org/10.1109/icecce49384.2020.
+9179443.
+[34] T. M. Alam et al., "Corporate Bankruptcy Prediction: An Approach Towards Better
+Corporate World," The Computer Journal, vol. 63, no. 5, 2020, doi:
+10.1093/comjnl/bxaa056.
+[35] T. I. Baig et al., "Classification of Human Face: Asian and Non-Asian People," in 2019
+International Conference on Innovative Computing (ICIC), 2019: IEEE, pp. 1-6. https://
+doi.org/10.1109/icic48496.2019.8966721
+[36] L.-p. Shen and R.-m. Shen, "Ontology-based learning content recommendation,"
+International Journal of Continuing Engineering Education and Life Long Learning, vol.
+15, no. 3-6, pp. 308-317, 2005. https://doi.org/10.1504/ijceell.2005.007719
+[37] J. Trajkova and S. Gauch, "Improving Ontology-Based User Profiles," in RIAO, 2004, vol.
+2004: Citeseer, pp. 380-390.
+[38] Y. Blanco-Fernández et al., "A flexible semantic inference methodology to reason about
+user preferences in knowledge-based recommender systems," Knowledge-Based Systems,
+vol. 21, no. 4, pp. 305-320, 2008. https://doi.org/10.1016/j.knosys.2007.07.004
+[39] C. Choi, M. Cho, J. Choi, M. Hwang, J. Park, and P. Kim, "Travel ontology for intelligent
+recommendation system," in 2009 Third Asia International Conference on Modelling &
+Simulation, 2009: IEEE, pp. 637-642. https://doi.org/10.1109/ams.2009.75
+[40] T. Di Noia, R. Mirizzi, V. C. Ostuni, D. Romito, and M. Zanker, "Linked open data to
+support content-based recommender systems," in Proceedings of the 8th international
+conference on semantic systems, 2012, pp. 1-8. https://doi.org/10.1145/2362499.2362501
+[41] Y. Blanco-Fernández, M. López-Nores, A. Gil-Solla, M. Ramos-Cabrer, and J. J. PazosArias, "Exploring synergies between content-based filtering and spreading activation
+techniques in knowledge-based recommender systems," Information Sciences, vol. 181,
+no. 21, pp. 4823-4846, 2011. https://doi.org/10.1016/j.ins.2011.06.016
+[42] W. IJntema, F. Goossen, F. Frasincar, and F. Hogenboom, "Ontology-based news
+recommendation," in Proceedings of the 2010 EDBT/ICDT Workshops, 2010, pp. 1-6.
+https://doi.org/10.1145/1754239.1754257
+[43] Q. Zeng, Z. Zhao, and Y. Liang, "Course ontology-based user’s knowledge requirement
+acquisition from behaviors within e-learning systems," Computers & Education, vol. 53,
+no. 3, pp. 809-818, 2009. https://doi.org/10.1016/j.compedu.2009.04.019
+
+304
+
+http://www.i-jet.org
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+[44] Y. Blanco-Fernandez, J. J. Pazos-Arias, A. Gil-Solla, M. Ramos-Cabrer, and M. LopezNores, "Providing entertainment by content-based filtering and semantic reasoning in
+intelligent recommender systems," IEEE Transactions on Consumer Electronics, vol. 54,
+no. 2, pp. 727-735, 2008. https://doi.org/10.1109/icce.2008.4587849
+[45] I. Cantador, M. Fernández, D. Vallet, P. Castells, J. Picault, and M. Ribiere, "A multipurpose ontology-based approach for personalised content filtering and retrieval," in
+Advances in Semantic Media Adaptation and Personalization: Springer, 2008, pp. 25-51.
+https://doi.org/10.1007/978-3-540-76361_2
+[46] T. Di Noia, R. Mirizzi, V. C. Ostuni, and D. Romito, "Exploiting the web of data in modelbased recommender systems," in Proceedings of the sixth ACM conference on
+Recommender systems, 2012, pp. 253-256. https://doi.org/10.1145/2365952.2366007
+[47] L. Zhuhadar, O. Nasraoui, R. Wyatt, and E. Romero, "Multi-model ontology-based hybrid
+recommender system in e-learning domain," in 2009 IEEE/WIC/ACM International Joint
+Conference on Web Intelligence and Intelligent Agent Technology, 2009, vol. 3: IEEE, pp.
+91-95. https://doi.org/10.1109/wi-iat.2009.238
+[48] M. Capelle, F. Hogenboom, A. Hogenboom, and F. Frasincar, "Semantic news
+recommendation using wordnet and bing similarities," in Proceedings of the 28th Annual
+ACM Symposium on Applied Computing, 2013, pp. 296-302. https://doi.org/10.1145/2480
+362.2480426
+[49] Y.-L. Chi, "Ontology-based curriculum content sequencing system with semantic rules,"
+Expert Systems with Applications, vol. 36, no. 4, pp. 7838-7847, 2009. https://doi.org/10.
+1016/j.eswa.2008.11.048
+[50] S. E. Middleton, N. R. Shadbolt, and D. C. De Roure, "Ontological user profiling in
+recommender systems," ACM Transactions on Information Systems (TOIS), vol. 22, no. 1,
+pp. 54-88, 2004. https://doi.org/10.1145/963770.963773
+[51] P. Shoval, V. Maidel, and B. Shapira, "An ontology-content-based filtering method," 2008.
+[52] B. Adrian, L. Sauermann, and T. Roth-Berghofer, "Contag: A semantic tag
+recommendation system," Proceedings of I-Semantics, vol. 7, pp. 297-304, 2007.
+[53] B. Shapira, P. Shoval, N. Tractinsky, and J. Meyer, "ePaper: A personalized mobile
+newspaper," Journal of the American Society for Information Science and Technology,
+vol. 60, no. 11, pp. 2333-2346, 2009. https://doi.org/10.1002/asi.21172
+[54] V. Maidel, P. Shoval, B. Shapira, and M. Taieb-Maimon, "Evaluation of an ontologycontent based filtering method for a personalized newspaper," in Proceedings of the 2008
+ACM conference on Recommender systems, 2008, pp. 91-98. https://doi.org/10.11
+45/1454008.1454024
+[55] L. Zhuhadar and O. Nasraoui, "A hybrid recommender system guided by semantic user
+profiles for search in the e-learning domain," Journal of Emerging Technologies in Web
+Intelligence, vol. 2, no. 4, 2010. https://doi.org/10.4304/jetwi.2.4.272-281
+[56] F. Frasincar, J. Borsje, and L. Levering, "A semantic web-based approach for building
+personalized news services," International Journal of E-Business Research (IJEBR), vol. 5,
+no. 3, pp. 35-53, 2009. https://doi.org/10.4018/jebr.2009082103
+[57] C. Cobos et al., "A hybrid system of pedagogical pattern recommendations based on
+singular value decomposition and variable data attributes," Information Processing &
+Management, vol. 49, no. 3, pp. 607-625, 2013. https://doi.org/10.1016/j.ipm.2012.12.002
+[58] M. Degemmis, P. Lops, and G. Semeraro, "A content-collaborative recommender that
+exploits WordNet-based user profiles for neighborhood formation," User Modeling and
+User-Adapted Interaction, vol. 17, no. 3, pp. 217-255, 2007. https://doi.org/10.1007/s11
+257-006-9023-4
+
+iJET ‒ Vol. 16, No. 03, 2021
+
+305
+
+Paper—A Review of Content-Based and Context-Based Recommendation Systems
+
+[59] V. Maidel, P. Shoval, B. Shapira, and M. Taieb-Maimon, "Ontological content-based
+filtering for personalised newspapers," Online Information Review, 2010.
+https://doi.org/10.1108/14684521011084591
+[60] S. Aciar, D. Zhang, S. Simoff, and J. Debenham, "Informed recommender: Basing
+recommendations on consumer product reviews," IEEE Intelligent systems, vol. 22, no. 3,
+pp. 39-47, 2007. https://doi.org/10.1109/mis.2007.55
+
+9
+
+Authors
+
+Suhuai Luo is an Associate Professor at The University of Newcastle, Australia.
+suhuai.luo@newcastle.edu.au
+Ibrahim A. Hameed is a full professor at the Norwegian University of Science
+and Technology, Norway. ibib@ntnu.no
+Kamran Shaukat is a Ph.D. student at The University of Newcastle, Australia.
+kamran.shaukat@uon.edu.au
+Umair Javed, Farhat Iqbal, Talha Mahboob Alam are students at the University
+of the Punjab, Pakistan. umair.mughal968@gmail.com, bcs.12.0012@pujc.edu.pk,
+talhamahboob95@gmail.com,
+Article submitted 2020-09-25. Resubmitted 2020-10-21. Final acceptance 2020-10-22. Final version
+published as submitted by the authors.
+
+306
+
+http://www.i-jet.org
+
+

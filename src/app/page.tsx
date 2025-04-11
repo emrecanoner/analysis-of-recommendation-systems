@@ -72,6 +72,12 @@ export default function Home() {
             >
               İşbirlikçi Filtreleme
             </button>
+            <button
+              onClick={() => router.push('/how')}
+              className="px-8 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              Nasıl Çalışır?
+            </button>
             <a
               href="/research"
               className="px-8 py-3 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-300 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700"

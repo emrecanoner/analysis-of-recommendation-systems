@@ -1,0 +1,2227 @@
+Multimedia Tools and Applications (2023) 82:38275–38296
+https://doi.org/10.1007/s11042-023-15141-2
+
+An effective profile expansion technique based
+on movie genres and user demographic information
+to improve movie recommendation systems
+Samad Mohamadi 1 & Vahe Aghazarian 1
+
+& Alireza Hedayati
+
+1
+
+Received: 6 October 2021 / Revised: 10 January 2023 / Accepted: 13 March 2023 /
+Published online: 25 March 2023
+# The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature 2023
+
+Abstract
+
+Movie recommendation systems are efficient tools to help users find their relevant movies by
+investigating the previous interests of users. These systems are established on considering the
+ratings of users provided for movies in the past and using them to predict their interests in the
+future. However, users mainly provide insufficient ratings leading to make a problem called
+data sparsity. This problem makes reducing the effectiveness of movie recommendation
+systems. On the other hand, other available data such as genres of movies and demographic
+information of users play a vital role in assisting recommenders in order to better produce
+recommendations. This paper proposes a movie recommendation method utilizing the movies’
+genres and users’ demographic information. In particular, we propose an effective model to
+evaluate the user’s rating profile and determine the minimum number of ratings required to
+produce an accurate prediction. Then, appropriate virtual ratings are incorporated into the
+profiles with insufficient ratings to expand them. These virtual ratings are calculated using
+similarity values between users obtained by genres of movies and demographic information of
+users. Furthermore, an effective measure is introduced to determine how much an item is
+reliable. This measure guarantees the virtual ratings’ reliability. Finally, unknown ratings for
+target user are predicted based on the expanded rating profiles. Experiments performed on two
+well-known movie recommendation datasets demonstrate that the proposed approach is more
+efficient than other compared recommenders.
+Keywords Recommendation systems . Movie . Data sparsity . Demographic information . Genre
+
+* Vahe Aghazarian
+v_aghazarian@iauctb.ac.ir
+Samad Mohamadi
+s.mohamadi@iauctb.ac.ir
+Alireza Hedayati
+hedayati@iauctb.ac.ir
+
+1
+
+Department of Computer Engineering, Islamic Azad University, Central Tehran Branch, Tehran, Iran
+
+38276
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+1 Introduction
+In recent years, various commercial and non-commercial websites have released a large
+amount of information and products on the Internet. This issue makes users to be confused
+by a vast amount of information in order to find their relevant information. Recommendation
+systems play an important role in helping users find their relevant information by
+recommending information of potential interest to them [28, 33]. The main purpose of these
+systems is to investigate the behavior of users in the past and extract appropriate knowledge to
+predict their interests in the future. Generally, recommendation systems attempt to reach two
+main objectives. The first one is to satisfy users in the system by providing the most relevant
+recommendations to them. It is due to the fact that users like to automatically receive the most
+relevant recommendations from the system to prevent wasting their time. The second objective
+is to enhance the satisfaction level of e-commerce owners by increasing the amount of profit
+through cross-selling [43, 45].
+Basically, recommendation methods can be categorized into three main approaches based
+on the way they use to produce recommendations for users. These approaches include
+collaborative filtering (CF) [42], content-based [32], and hybrid models [24]. CF is a popular
+approach employed in designing recommenders which its main idea is to utilize ratings data to
+predict users’ preferences. This approach can be performed in two different scenarios including
+memory-based CF and model-based CF. In the memory-based CF, first of all, similarity
+measurements including Pearson correlation coefficient, Cosine, and Jaccard are utilized to
+determine the similarity value between users/items and form a set of nearest neighbors for
+target user. Then, the unknown ratings are predicted according to the preferences of the
+neighbors of target user. The memory-based CF models can also benefit from using a
+heterogeneous parameterized similarity measure, which can capture hidden relationships
+between users [10]. Model-based CF utilizes machine learning techniques to construct a model
+to predict the unknown ratings of users. Various learning models have been used in recommendation systems including clustering approaches, matrix factorization, singular value decomposition, and so on [27, 34, 47]. Content-based models utilize content information of items
+in the recommendation process. The content information is related to the products used in the
+recommendation system. For instance, in a movie recommendation system, the content
+information can be the genres of movies provided in the system. Hybrid models combine
+the characteristics of two or more other models to produce more accurate recommendations.
+One of the main resources used in recommendation systems to produce recommendations is
+user-item ratings matrix. The efficiency of recommendation systems directly depends on the
+quality of user-item ratings matrix. In other words, if users provide sufficient ratings in the
+system, it leads to produce more accurate recommendations [2, 4]. However, users mainly tend
+to assign ratings to a few items while there are usually enormous items in the system. This issue
+is known as one of the most common problems in recommendation systems which is called data
+sparsity. It is worth noting that data sparsity problem has a great impact on diminishing the
+effectiveness of recommendation systems. Many researches have been conducted in the
+literature to develop appropriate approaches in order to alleviate data sparsity problem [5, 6,
+38]. One of the main ideas of these approaches is to use additional data such as trust
+relationships between users [1, 3], tag information [11], and review information [22] in the
+recommendation process. In a movie recommendation system, some additional data related to
+movies and users exist in the system that can be utilized to deal with the data sparsity problem.
+These data include the genres of movies and demographic information of users. Nevertheless, it
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38277
+
+is a challenging issue how to employ such additional data in movie recommendation systems [9,
+40]. One of the practical solutions to address the data sparsity problem is to expand the rating
+profiles of users by adding implicit ratings. In the literature, a number of researches have been
+conducted to develop effective methods to deal with the data sparsity problem by expanding the
+rating profiles of users. However, it should be noted that some rating profiles contain sufficient
+explicit ratings and incorporating additional implicit ratings into them may lead to decline their
+performance in making recommendations. Therefore, it is a critical issue in the recommender
+systems to identify whether a rating profile requires to be expanded. On the other hand, the
+reliability of implicit ratings used in the expansion mechanisms should be taken into account to
+avoid adding ineffective ratings to the rating profiles of users. By investigating the previous
+works [9, 12, 35, 41], it can be inferred that most of them have neglected to incorporate the
+reliability measurement into the movie recommendation procedure.
+We propose a movie recommender system in this paper by employing the genres of movies
+and demographic information of users to address the above-mentioned challenges. To this end,
+first of all, a model is developed in order to determine whether the target user’s rating profile is
+appropriate to produce accurate recommendations or not. In other words, the developed model
+determines how many ratings are required for each user to generate an accurate prediction with
+a high probability. This criterion is used to demonstrate that a rating profile contains sufficient
+ratings for producing reliable recommendations or not. Then, the quality of rating profiles
+containing insufficient ratings is boosted using an effective profile expansion technique which
+incorporates some virtual ratings to these profiles. These virtual ratings are calculated using the
+similarity values between users which are computed according to the genres of movies and
+demographic information of users. Moreover, the reliability values of users and items are
+calculated using appropriate reliability measurements to guarantee that the incorporated virtual
+ratings are reliable. Experimental results on two movie recommendation datasets indicate the
+superiority of the proposed approach in respect to other models. In the following, we provide a
+list of the main contributions of this paper:
+
+&
+&
+&
+&
+&
+
+We develop a model in order to evaluate the users’ rating profiles and determine how
+many ratings are required for generating an accurate prediction.
+We propose a powerful profile expansion technique which incorporates some virtual
+ratings to user-item ratings matrix for improving its quality.
+Movies’ genres and users’ demographic information are used as additional data in the
+proposed movie recommender system.
+The reliability measures of users and items are used in the proposed method to guarantee
+the reliability of calculated virtual ratings.
+The proposed method generates a denser user-item ratings matrix than the original matrix
+which results in alleviating data sparsity problem significantly.
+
+The remaining parts of this paper are structured as follows: in section 2, related works are
+investigated, section 3 includes the details of the proposed method, section 4 refers to the
+discussion of experimental results, and section 5 provides some conclusions about the paper.
+
+38278
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+2 Related works
+Many researches have been conducted in the literature to develop movie recommender
+systems [21, 39, 41]. A hybrid movie recommendation method is proposed in [41] by utilizing
+collaborative filtering, content-based filtering, and a fuzzy expert system to provide a list of
+relevant movies for users. In particular, the fuzzy expert system is used to determine the
+importance of movies recommended to user as a recommendations list leading to provide more
+accurate recommendations list. In [39], deep autoencoder neural network is utilized to develop
+a social movie recommendation approach. This system is designed based on a hybrid model
+utilizing collaborative filtering, content-based filtering, and social information of users. In [21],
+the authors focused on developing a movie recommender system based on data clustering and
+computational intelligence concepts. To this end, the k-means clustering algorithm is improved
+by cuckoo search optimization approach and utilized to make recommendations for users.
+Indira et al. [19] employed some machine learning algorithms to propose an effective movie
+recommendation method. Accordingly, first of all, the input dataset is cleaned by removing the
+existing noises leading to make a more reliable dataset. Then, a feature selection approach
+based on principle component analysis model is used to select an appropriate subset of features
+for performing k-means clustering approach. Finally, a list of relevant movies is generated for
+each user based on the obtained clusters. Gan et al. [15] showed that the timeliness of users’
+preferences and their sequential characteristics play an important role in increasing the
+accuracy of movie recommender systems. Therefore, they proposed a user movie interest
+space model called UMIS by considering three indexes for describing different patterns of
+users’ preferences. Moreover, a deep learning approach is applied to the UMIS model to
+generate movie recommendations. In [13], a movie recommendation method is proposed
+based on a user positive profile and a user negative profile which are created using two movie
+lists where one of them contains the movies that the user likes and another list contains the
+movies that the user does not like. The main purpose of this method is to make a recommendations list for each user in which the movies are most similar to the positive profile as well as
+most different from the negative profile. Roy et al. [35] addressed the cold start problem
+related to the new movies that there are no sufficient ratings assigned to them. To this end, they
+proposed a hybrid movie recommendation approach by utilizing the genres of movies for
+computing the similarity values between movies and making recommendations for users.
+Ortega et al. [30] introduced a matrix factorization method for recommender systems which
+is able to calculate not only predictions values, but also it can calculate reliability values. The
+authors have shown that their proposed method contains significant advantages in boosting the
+effectiveness of recommenders. [26] incorporates reliability concept into a trust-aware recommender system in order to evaluate the trust networks of users and identify ineffective users
+who have negative effect on calculating unknown ratings. In [18], two efficient components
+including users’ reliability and influence propagation are utilized to develop a social affect
+model for recommender systems. In particular, the users’ reliability and influence propagation
+components are used to make a user-shared feature space to produce recommendations for
+users. [49] proposes a reliability measurement in order to calculate the reliability of users’
+profiles by investigating the possible conflicts in the profiles of neighbors of the target user.
+The interests of users are grouped using k-means clustering algorithm to find unreliable
+profiles in the neighborhood of users. Jiang et al. [20] utilized a hypergraph random walk
+approach by considering weighting models on hyperedges and vertices to make recommendations through a ranking process. Moreover, trust relationships between users and reliability
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38279
+
+measure are employed into constructing the hypergraph leading to an improvement in the
+prediction accuracy. In [7], the authors addressed the shilling attacks in recommender systems
+by proposing a matrix factorization approach based on a reliability measure which demonstrates that how much a prediction is reliable. Accordingly, the shilling attacks can be detected
+by investigating the predicted ratings that their reliability values are unusual. The authors
+experimentally showed that their proposed model is able to detect most of the existing attacks
+in recommender systems. Deep learning-based models are utilized in [12] to design a movie
+recommendation approach by achieving users’ representations based on different aspects.
+Also, different fusion functions are deployed to integrate the obtained representations and
+make movie recommendations. In [37], the authors employed multimodal heterogeneous
+information networks to propose a movie recommendation model by learning video embedding and achieving appropriate context among videos. Huang et al. [16] showed that incorporating explanations into the recommendation process can improve the effectiveness of
+sequential recommender systems. They utilized knowledge graphs to find semantic paths
+between users and items in the system. Moreover, a path-wise explanation for each path is
+provided for the recommendation according to the semantic paths.
+The main differences between the proposed method and other related works discussed
+above are as follows. First, most of the related movie recommendation models did not consider
+the genres of movies and demographic information of users in their recommendation procedure. Although these data resources are very helpful for movie recommendation methods, the
+previous works mainly focused on other data resources such as the user-item rating matrix.
+Second, unlike previous works that make movie recommendations based on the original useritem rating matrix, the proposed method uses an improved rating matrix expanded by adding
+virtual ratings. This leads to an enhancement in the quality of movie recommendations
+specially for those users whose rating profiles do not contain sufficient explicit ratings.
+Therefore, the proposed method can be very effective in addressing the data sparsity problem
+in movie recommender systems. Third, the previous works mainly made movie recommendations based on the predicted ratings without considering the reliability measurement in the
+recommendation process. Whilst, the proposed method evaluates the reliability of users and
+items using two effective measures and deploys them in the rating profile expansion mechanism. The main purpose of the proposed reliability measures is to guarantee the reliability of
+the virtual ratings leading to a better movie recommendation procedure.
+
+3 Proposed method
+This section provides the details of the proposed movie recommendation method which is based
+on a Genre and Demographic information based Profile Expansion technique. We name the
+proposed method as GDPE which includes five steps: (1) rating profile evaluation (2) calculating reliability of users (3) calculating reliability of items (4) rating profile expansion, and (5)
+making recommendations. A general schema of GDPE method is provided in Fig. 1. The details
+of each step of the proposed GDPE model are discussed in the following subsections.
+
+3.1 Rating profile evaluation
+The number of available ratings in the user’s rating profile plays a critical role in producing
+accurate predictions for unseen items. The performance of recommender systems depends on
+
+38280
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+Fig. 1 The general schema of the proposed GDPE model
+
+existing sufficient ratings in the rating profiles of users. Accordingly, one should find that
+whether the number of ratings in a rating profile is sufficient to produce accurate predictions or
+not. To address this issue, in this section, an efficient probabilistic methodology is developed for
+investigating the effectiveness of user’s rating profile based on the assigned ratings to items. In
+particular, this methodology determines that how many ratings are required for predicting
+unknown ratings accurately. Thus, the number of ratings in a rating profile is compared with the
+computed number of required ratings, and if the number of existing ratings is lower than the
+calculated minimum value for a rating profile, it will be considered as an unreliable rating
+profile which should be expanded by the proposed rating profile expansion technique.
+Suppose that U and I indicate users set and items set in the system, respectively. Also, the
+ratings assigned by users to items are in the range of [minR, maxR]. The probability of
+assigning a rating r ∈ [minR, maxR] by user u is defined as:
+
+ nu;r
+ð1Þ
+αu;r ¼ Pr ru;i ¼ r ¼
+jI u j
+where ru, i is the item i’s rating which is made by user u, the number of ratings assigned by user
+u in the level r is indicated by nu, r, and Iu refers to those items rated by user u. To compute the
+true rating provided by user u, the majority rule is defined as follows:
+
+
+max
+αu;r
+ð2Þ
+lu ¼
+r∈½minR;maxR
+
+where the true rating for user u is denoted by lu. Then, according to Eq. (3), we can calculate
+the minimum number of ratings which are required for producing an accurate prediction for
+user u:
+0
+
+−1 1
+
+
+−2
+4
+α
+−e
+α
+u;l
+u
+u
+0
+B
+C
+e u αu;lu −e
+αu −2 þ
+nu ¼ @2 αu;lu þ α
+A  lnðmaxR−minRÞδ−1 ð3Þ
+3
+where δ is a predefined threshold value which determines the level of reliability in producing
+e u , which is obtained
+accurate predictions, and the second largest value of αu, r is denoted by α
+as follows:
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+eu ¼
+α
+
+max
+
+r∈½minR;maxR
+
+38281
+
+
+
+αu;r jr≠lu
+
+ð4Þ
+
+h
+i
+0
+Considering Eq. (3), if jI u j ≥nu , then Pr blu ¼ lu ≥1−δ [46], where bl u is the predicted rating
+for user u. Eq. (3) is theoretically proofed in the following.
+
+
+Lemma 1 Pr ru;i ¼ r ¼ u;r denotes the probability mass function (pmf) of ru;i , where r ∈
+[minR, maxR], u ∈ U, and i 2 I u .
+
+Proof of Lemma 1 Suppose that the probability of ratings provided by user u in different levels is
+indicated by ρ = (ρu, minR, …, ρu, maxR) which follows Dirichlet distribution. Also, ρ denotes an
+example which is randomly drawn through Dirichlet(αu, r). Therefore, Pr[ru, i = r| ρ] = ρu, r can
+be considered as the conditional pmf of ru, i, which denotes a fundamental feature of Dirichlet
+distributions as Pr[ru, i = r] = ∫ Pr [ρ] Pr [ru, i = r| ρ]dρ = ∫ Pr [ρ]ρu, rdρ = αu, r [8].
+Theorem 1 Let X = X1 + X2 + … + Xn and σ2 ¼ Var½X  ¼ ∑ni¼1 Var½X i , where X1, X2, …,
+Xn are n random variables that their values are in the range [0,1]. Therefore, two states can be
+
+
+2
+gained for each τ ≥ 0, which are included Pr½X ≥ E½X  þ τ  < exp − 2ðσ2τþτ=3 and Pr
+
+
+2
+½X ≤ E ½X −τ  < exp − 2ðσ2τþτ=3 [25].
+h
+i
+Proof of Eq. (3) To denote that Pr blu ≠lu ≤ δ, we employ Theorem 1. Therefore, the following
+equation can be defined by considering the basic probability arguments:
+ n
+h
+i
+o
+h
+i
+
+
+Pr bl u ≠l u ¼ Pr ⋃ blu ¼ r ≤ ∑ Pr bl u ¼ r ≤ ∑ Pr nu;r ≥ nu;lu
+ð5Þ
+r≠lu
+
+r≠lu
+
+r≠l u
+
+Furthermore, a set of random variables shown by Rru;i are obtained as follows:
+Rru;i
+
+8
+< 1;
+¼
+0;
+:
+1=2;
+
+
+
+with probability Pr ru;i ¼ r 
+with probability Pr ru;i ¼ lu
+otherwise
+
+ð6Þ
+
+where the pmf of ru, i is computed through Lemma 1, r ∈ [minR, maxR], u ∈ U, and i ∈ Iu. It
+can be proved that if Rru ¼ ∑i∈I u Rru;i , then Rru ¼ nu;r þ I u −nu;r −nu;lu =2. Thus, the following
+equation can be defined:
+Rru ≥
+
+Iu
+I u −nu;r −nu;lu I u
+⟺nu;r þ
+≥ ⟺nu;r ≥ nu;lu
+2
+2
+2
+
+ð7Þ
+
+
+
+
+
+Moreover, it can be inferred that Pr nu;r ≥ nu;lu ¼ Pr Rru ≥ I2u . Accordingly, we should
+h
+i
+
+
+δ
+; ∀r≠l u to prove Eq. (3), meaning that Pr blu ≠lu ≤ ∑ Pr
+indicate that Pr Rru ≥ I2u ≤ maxR−minR
+
+
+
+
+
+
+r≠lu
+
+
+ 
+2
+nu;r ≥ nu;lu ¼ Pr Rru ≥ I2u ≤ δ. Suppose Var Rru ¼ αu;lu þ αu;r − αu;lu −αu;r ÞI4 u is variance
+ 
+ðαu;lu −αu;r ÞI u
+refers to the expectation. Therefore, Theorem 1 is applied to
+of Rru and E Rru ¼ I2u −
+2
+ðαu;lu −αu;r ÞI u
+to obtain the following equation:
+τ¼
+2
+
+38282
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+
+Pr Rru ≥
+
+0
+
+1
+
+
+ 
+
+Iu
+τ
+B
+C
+¼ Pr Rru ≥ E Rru þ τ ≤exp@−    τ  A
+r
+2
+2 Var Ru þ
+3
+0
+!−1 1
+2
+α
+þ
+α
+4
+u;l
+u;r
+u
+A
+−2 þ
+¼ exp@−I u 
+2
+3 αu;lu −αu;r
+αu;lu −αu;r
+0
+0 
+1−1 1
+
+eu
+2 αu;lu þα
+δ
+B
+B
+C C
+2 −2 þ  4  A A ≤
+≤ exp@−I u  @ 
+ðmaxR−minRÞ
+eu
+3 αu;lu −α
+eu
+αu;lu −α
+2
+
+ð8Þ
+
+Eq. (8) results in proving Eq. (3). It should be noted that, the proposed probabilistic methodology is used to determine that how much a rating profile is effective. For each user u, if
+0
+jI u j < nu , then this profile is considered as an unreliable profile which must be expanded.
+0
+Therefore, the calculated nu can be used in the proposed profile expansion technique to
+determine that whether a rating profile should be expanded or not.
+
+3.2 Calculating reliability of users
+This section introduces a reliability measure according to three different factors which is used
+in the next step to calculate the reliability of items. For this purpose, at first, the used three
+factors are determined, and then they are combined using a mechanism to calculate the
+reliability value. To calculate the reliability of user u, the number of ratings in the user u’s
+profile is considered as the first factor. It should be noted that providing further ratings by the
+user results in increasing the reliability of predictions in recommender systems. Thus, there is a
+direct relationship between the value of reliability for a user and the number of ratings in their
+profile. Eq. (9) calculates the first factor of the reliability of user u as follows:
+f i ðI u Þ ¼ 1−
+
+u
+
+ð9Þ
+
+u þ jI u j
+
+where Iu refers to the items set rated by user u, and u indicates the median of the values for ∣Iu∣.
+In addition to the ratings assigned by user u, the ratings that have been expressed by the
+users in their nearest neighbors set have a significant impact on the user u’s reliability. Thus,
+we consider this important criterion as the second factor of the reliability of user u which has a
+positive effect on the reliability value as considering further ratings in the recommendation
+process results in increasing the predictions’ reliability. The nearest neighbors set is constructed using the similarity values between the target user and other users. A subset of most similar
+users is selected as the nearest neighbors set. To this end, the similarity value between users u
+and v is measured using the Pearson correlation coefficient function as follows:
+
+
+
+∑i∈I u;v ru;i −ru rv;i −rv
+sﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+ð10Þ
+simðu; vÞ ¼ rﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+
+
+
+
+∑i∈I u;v ru;i −ru
+
+2
+
+∑
+
+i∈I u;v
+
+rv;i −rv
+
+2
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38283
+
+where the rating of item i assigned by user u is denoted by ru, i, the average of ratings provided
+by user u is denoted by ru , and Iu, v implies the set of common items for users u and v. After
+computing the similarity values, the nearest neighbors are determined by selecting N users with
+the highest similarity values. Then, the second factor is defined using the number of ratings
+provided by the nearest neighbors as follows:
+f iNN ðI NN u Þ ¼ 1−
+
+iNN
+iNN þ jI NN u j
+
+ð11Þ
+
+where NNu represents the nearest neighbors of user u, I NN u refers to the items set rated by the
+nearest neighbors, jI NN u j denotes the number of ratings generated by the nearest neighbors,
+and iNN implies the median of the values of jI NN u j.
+The third factor used in the reliability of users is defined regarding the similarity values
+between the target user and the nearest neighbors. The higher similarity values result in
+increasing the reliability of predictions in recommender systems. Thus, this factor is defined
+according to the summation of similarity values using the following equation:
+f s ðS u Þ ¼ 1−
+where,
+
+s
+s þ Su
+
+S u ¼ ∑ simðu; vÞ
+
+ð12Þ
+
+ð13Þ
+
+v∈NN u
+
+and s refers to the median of the values of Su.
+To compute the user u’s reliability, the defined factors are combined using a weight-based
+mechanism. By investigating Eqs. (9), (11), and (12), we can conclude that the first and second
+factors are independently computed according to the number of items rated by user u and the
+number of ratings generated by the nearest neighbors, respectively. Thus, to compute the user
+u’ reliability, the weights of the first and second factors are set to 1. The third factor depends on
+the value of the second factor. Specifically, the higher value of the second factor increases the
+value of the third factor, and vice versa. Accordingly, to calculate the reliability of the target
+user u, the weight of the third factor is determined as the value of the second factor. Therefore,
+the reliability of the target user u is calculated using the geometric average of the defined
+factors as follows:
+1
+h
+i
+2þ f i
+I
+NN ð NN u Þ
+URu ¼ f i ðI u Þ: f iNN ðI NN u Þ: f s ðS u Þ f iNN ðI NN u Þ
+
+ð14Þ
+
+where URu refers to the reliability of the target user u. Figure 2 illustrates the main procedure of
+the calculation of the reliability of users.
+
+3.3 Calculating reliability of items
+In this section, the reliability of items is evaluated using a measure according to three different
+factors. To this end, these factors are defined and then a combination of them is considered as
+the reliability of items. The first factor is determined according to the number of ratings
+generated for the item by the users. Assigning further ratings to an item results in increasing its
+
+38284
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+Calculate the first factor based on the number of ratings in the user’s
+profile using Eq. (9)
+
+Calculate the similarity value between users based on the Pearson
+correlation coefficient function using Eq. (10)
+
+Determine the nearest neighbors of the user by selecting N users with
+the highest similarity values
+
+Calculate the second factor based on the number of ratings provided
+by the nearest neighbors using Eq. (11)
+
+Calculate the third factor based on the summation of the similarity
+values between the user and the nearest neighbors using Eq. (12)
+
+Calculate the reliability of the user based on the geometric average of
+the defined factors using Eq. (14)
+Fig. 2 The flowchart of the calculation of the reliability of users
+
+reliability. Thus, the first factor has a positive effect on the item’s reliability. The following
+equation is used to define the first factor:
+i
+ð15Þ
+f i ðI i Þ ¼ 1−
+i þ jI i j
+where ∣Ii∣ implies the number of ratings generated for item i, and i refers to the median of the
+values of ∣Ii∣.
+The second factor used in calculating the item’s reliability is the standard deviation of
+ratings which are assigned to the target item i by the users. The main purpose of this factor is to
+measure the differences in the opinions of users on the target item in which the higher value of
+this factor results in decreasing the reliability value. Therefore, this factor impacts negatively
+the value of reliability of the target item and is computed using Eq. (16) as follows:
+f sd ðstdevðI i ÞÞ ¼
+
+max−stdevðI i Þ
+max−min
+
+ð16Þ
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38285
+
+where stdev(Ii) denotes the value of standard deviation for the ratings generated for item i, and
+the maximum and minimum of all values of stdev(Ii) are denoted by max and min, respectively.
+The reliability values of users calculated using Eq. (14) are employed to define the third
+factor. To do this, the summation of reliability values related to the users who have provided a
+rating for the target item i is used to calculate this factor. The main motivation behind the third
+factor is the fact that assigning the ratings to the target item by reliable users results in
+increasing its reliability value. Thus, the following equation is utilized to define the third
+factor of the target item i’s reliability:
+f c ðC i Þ ¼ 1−
+
+c
+c þ Ci
+
+ð17Þ
+
+where
+C i ¼ ∑ URu
+
+ð18Þ
+
+u∈U i
+
+and c refers to the median value of all calculated values of Ci, Ui implies a subset of users who
+have rated the target item i, and URu is the user u’s reliability computed by Eq. (14).
+Finally, the reliability of items is achieved according to the integration of the three factors.
+To this end, we need to set the weights of these factors in the integration mechanism. The
+number of ratings assigned to the target item does not depend on the other factors, thus the
+weight of the first factor is set to 1. The second and third factors depend directly on the value of
+the first factor. Therefore, the weights of the second and third factors are set to the value of the
+first factor. Accordingly, the geometric average of the three factors is considered as the
+reliability of the target item i:
+h
+i 1
+1þ2 f i ðI i Þ
+IRi ¼ f i ðI i Þ: f sd ðstdevðI i ÞÞ f i ðI i Þ :f c ðC i Þ f i ðI i Þ
+
+ð19Þ
+
+where IRi implies the reliability of the target item i. This reliability measurement is used in the
+proposed rating profile expansion technique to determine most reliable items in order to add to
+the unreliable rating profiles. This leads to an enhancement in the reliability of the proposed
+rating profile expansion technique by providing more efficient user-item rating matrix for the
+recommendation process.
+
+3.4 Rating profile expansion
+In this section, an efficient rating profile expansion technique is developed in order to improve
+the quality of user-item rating matrix. In particular, each unreliable rating profile which
+contains insufficient ratings is expanded by incorporating additional virtual ratings. In order
+to guarantee the reliability of these virtual ratings, for each user u who has an unreliable rating
+profile Iu, the items in the set I u ¼ I−I u are sorted regarding their reliability values calculated
+using Eq. (19) and a subset of most reliable items is considered to incorporate into the user u’s
+0
+profile. It is worth noting that the minimum number of required ratings (i.e., nu ) obtained using
+Eq. (3) is used to determine that how many virtual ratings should be added to the rating profile.
+Accordingly, the number of virtual ratings which should be considered to expand the rating
+0
+profile of user u is equal to nu −jI u j. To calculate the virtual ratings, first of all, the demographic
+information of users and genres of movies are employed to obtain the similarity values
+
+38286
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+between users. The similarity value between users u and v based on the demographic
+information is calculated by performing a weighted average on the demographic attributes
+such as age, gender, and occupation using the following equation:
+jDj
+
+simðu; vÞdemo ¼
+
+∑ j¼1 x j d j
+
+ð20Þ
+
+jDj
+
+∑ j¼1 d j
+
+where sim(u, v)demo denotes the similarity value between users u and v based on
+demographic information, D is the set of demographic attributes, dj is the weight of
+jth demographic attribute, and xj = 1 if the jth demographic attribute for both users
+u and v is equal; otherwise xj = 0.
+To calculate similarity values based on genres of movies, we consider the genres of movies
+that have been rated by the users. Therefore, the similarity value between users u and v based
+on the genres of movies is computed using Eq. (21):
+∑gj¼1 Gu; j Gv; j
+simðu; vÞgenre ¼ qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃqﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+∑gj¼1 G2u; j ∑gj¼1 G2v; j
+
+ð21Þ
+
+where sim(u, v)genre indicates the similarity value between users u and v based on genres of
+movies, G∣U ∣ × g is the user-genre matrix, g is the number of genres for the movies, Gu, j
+indicates that whether user u has rated the movies in the genre j. It should be noted that Gu, j =
+1 if user u has rated at least one movie in the genre j, otherwise; Gu, j = 0.
+Eq. (22) computes the Harmonic mean of the demographic-based and genre-based similarity values as follows:
+
+simðu; vÞdemo
+
+genre
+
+¼
+
+8
+>
+>
+>
+>
+>
+<
+>
+>
+>
+>
+>
+:0
+
+2  simðu; vÞdemo  simðu; vÞgenre
+simðu; vÞdemo þ simðu; vÞgenre
+simðu; vÞdemo
+simðu; vÞgenre
+
+if simðu; vÞdemo ≠0 and simðu; vÞgenre ≠0
+if simðu; vÞdemo ≠0 and simðu; vÞgenre ¼ 0
+if simðu; vÞdemo ¼ 0 and simðu; vÞgenre ≠0
+if simðu; vÞdemo ¼ 0 and simðu; vÞgenre ¼ 0
+
+ð22Þ
+where sim(u, v)demo _ genre indicates the combined similarity value between users u and v based
+on both demographic and genres information.
+Finally, the virtual rating VRu, i for user u and each item i∈I u is computed according to the
+combined similarity values in the following:
+VRu;i ¼
+
+∑v∈NN u simðu; vÞdemo
+
+genre
+
+∑v∈NN u simðu; vÞdemo
+
+ rv;i
+
+ð23Þ
+
+genre
+
+where rv, i refers to the rating corresponding to user u and item i, and NNu represents the
+nearest neighbors set of user u which is obtained by selecting N users with the highest
+similarity values.
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38287
+
+After calculating the virtual ratings, the expansion of rating profiles can be performed by
+0
+incorporating these virtual ratings. For each user u, if jI u j < nu then the virtual ratings in the
+set I u will be calculated using Eq. (23). Then, the items’ reliability calculated using Eq. (19) is
+utilized to sort the items in the set I u . Finally, the user u’s profile is expanded through adding a
+0
+number of nu −jI u j virtual ratings with the highest reliability. This process is repeated for all
+users with unreliable profiles which results in making a new user-item rating matrix using the
+proposed rating profile expansion method.
+Algorithm 1 Genre and Demographic information based Profile Expansion technique (GDPE)
+
+3.5 Recommendation
+To generate a recommendations list for the target user, firstly, the final similarity values
+between users are computed by employing the expanded rating profiles, and then the unknown
+ratings are predicted. For this purpose, Eq. (10) is utilized to compute these similarity values as
+the Pearson correlation coefficient. In addition, the unknown rating Pu, i for user u and item i is
+predicted as:
+
+38288
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+Pu;i ¼ ru þ
+
+
+
+∑v∈NN u simðu; vÞ  rv;i −rv
+∑v∈NN u simðu; vÞ
+
+ð24Þ
+
+where sim(u, v) refers to the final similarity value between users u and v (Eq. (10)) based on
+the expanded rating profiles, and NNu indicates a set containing N users that are considered as
+the user u’s nearest neighbors. After calculating the unknown ratings using Eq. (24), the top _
+N recommendations list is generated for the target user. Algorithm 1 indicates the pseudo-code
+of GDPE model.
+
+4 Experiments
+It should be investigated that how much the proposed method is effective by assessing its
+performance in comparison to other recommendation approaches through conducting extensive experiments. Accordingly, probabilistic matrix factorization (PMF) [36], nonlinear probabilistic matrix factorization (NLPMF) [23], multi-level collaborative filtering (MLCF) [31],
+item-global profile expansion (IGPE) [14], popularity-based probabilistic latent semantic
+analysis (PPLSA) [17], matrix factorization model based on linked open data (MF-LOD)
+[29], user profile correlation-based similarity (UPCSim) for movie recommender systems [44],
+positive profile and negative profile (PP/NP) for movie recommender systems [13], genresimilarity hybrid filtering (GSHF) [35], and graph-based hybrid recommender system for
+movie recommendation (GHRS) [48] are utilized as competitors in the experiments.
+
+4.1 Datasets
+MovieLens 100 K and MovieLens 1 M are two popular movie recommendation datasets
+collected by the GroupLens Research Project1 that are used in this paper to carry out the
+experiments. There are 100,000 ratings in MovieLens 100 K which are assigned to 1682
+movies by 943 users while MovieLens 1 M consists of 1,000,209 ratings provided by 6040
+users to 3900 movies. The ratings in these datasets are in the range of [1, 5] with step 1, where
+1 and 5 indicate the lowest and highest interests, respectively. These datasets contain the
+demographic information of users including age, gender, occupation, and zip code, and also 18
+different genres of movies.
+
+4.2 Evaluation metrics
+For illustrating the recommendation methods’ efficiency, four evaluation metrics: mean
+absolute error (MAE), precision, recall, and F1 are utilized in the experiments. MAE indicates
+a metric in which the amount of error between the predicted ratings (pi) and real ratings (ri) is
+formulized as follows:
+MAE ¼
+
+1 jTej
+∑ jri −pi j
+jTej i¼1
+
+where |Te| indicates the number of ratings that are predicted by recommenders.
+1
+
+https://grouplens.org/datasets/movielens/
+
+ð25Þ
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38289
+
+Precision and recall are two metrics which indicate the quality of recommendations list
+produced by recommendation methods. In particular, the ratio of relevant items produced by
+recommendation methods in the recommendation list and the ratio of relevant items in the test
+set recommended to users are referred to precision and recall, respectively. These metrics can
+be computed as follows:
+precision ¼
+
+recall ¼
+
+jfrecommended items that are relevantgj
+top N
+
+jfrecommended items that are relevant gj
+jfall relevant itemsgj
+
+ð26Þ
+
+ð27Þ
+
+F1 metric is defined as the Harmonic mean of precision and recall values which can be
+calculated as follows:
+F1 ¼
+
+2  precision  recall
+precision þ recall
+
+ð28Þ
+
+4.3 Experimental setup
+The proposed GDPE method has some input parameters that their values should be determined
+before carrying out the experiments. Parameters δ and N in Eqs. (3) and (24) are set to δ = 0.4
+and N = 90 for both Movielens 100 K and Movielens 1 M datasets. These values are obtained
+through performing several experiments that are discussed in section 4.5. The parameter dj is
+the weight of jth demographic attribute which is used in Eq. (20). We use three demographic
+information for users including age, gender, and occupation that their weights are set to 0.3,
+0.3, and 0.4, respectively. It is worth noting that the weights of demographic attributes are
+selected by performing a greedy search strategy to find their optimal values. In the experiments, we use different sparsity levels to show the effectiveness of the compared recommendation methods in alleviating data sparsity problem. Accordingly, we define a sparsity level θ
+referring to the amount of data considered in the training process of the recommendation
+methods. The sparsity levels are set to θ = 10 % , 20 % , 50 % , 80 % , 90% in which θ =
+20% means that the training set is formed by selecting 80% of whole data and the test set
+comprises the remaining data. According to this assumption, the higher value of sparsity level
+shows that a lower amount of data is utilized in the training set.
+
+4.4 Comparison with other models
+The results of experiments performed on Movielens 100 K and Movielens 1 M datasets are
+discussed in this section to investigate the superiority of our model compared to other
+recommenders. The experimental results based on MAE metric are reported in Table 1 in
+which different sparsity levels are considered to show the ability of compared recommendation
+models in addressing data sparsity problem. It can be seen that the MAE values of GDPE
+model are lower than other models for all the sparsity levels indicating that the proposed
+method achieves the best results compared to other competitors. In the case θ = 20%, GDPE
+achieves the MAE values of 0.802 and 0.827 for Movielens 100 K and Movielens 1 M
+
+38290
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+Table 1 The MAE values for compared algorithms based on MovieLens 100 K and MovieLens 1 M datasets,
+and different levels of sparsity (θ)
+Algorithm MovieLens 100 K
+
+MovieLens 1 M
+
+θ =10% θ=20% θ =50% θ =80% θ =90% θ =10% θ=20% θ =50% θ=80% θ =90%
+PMF
+NLPMF
+MLCF
+IGPE
+PPLSA
+UPCSim
+PP/NP
+GSHF
+MF-LOD
+GHRS
+GDPE
+
+0.885
+0.895
+0.903
+0.931
+0.874
+0.856
+0.847
+0.834
+0.833
+0.814
+0.781
+
+0.904
+0.921
+0.936
+0.964
+0.883
+0.874
+0.861
+0.852
+0.849
+0.821
+0.802
+
+1.151
+1.183
+1.217
+1.148
+1.127
+1.109
+1.102
+0.994
+0.971
+0.945
+0.914
+
+1.196
+1.209
+1.234
+1.182
+1.164
+1.139
+1.127
+1.118
+1.113
+1.102
+0.998
+
+1.207
+1.221
+1.249
+1.201
+1.179
+1.154
+1.151
+1.139
+1.128
+1.114
+1.056
+
+0.915
+0.921
+0.953
+0.972
+0.891
+0.875
+0.859
+0.851
+0.847
+0.829
+0.806
+
+0.942
+0.967
+0.991
+0.997
+0.928
+0.913
+0.895
+0.874
+0.861
+0.853
+0.827
+
+1.185
+1.227
+1.246
+1.173
+1.169
+1.157
+1.138
+1.095
+1.075
+1.037
+0.984
+
+1.241
+1.259
+1.287
+1.228
+1.215
+1.194
+1.176
+1.149
+1.132
+1.123
+1.062
+
+1.265
+1.273
+1.296
+1.241
+1.229
+1.221
+1.208
+1.182
+1.167
+1.154
+1.108
+
+The best results are shown in bold
+
+datasets, respectively. In this case, the GHRS method is the second-best performer by
+obtaining the MAE values of 0.821 and 0.853 for Movielens 100 K and Movielens 1 M
+datasets, respectively. Also, it is shown that the performance of the compared models is
+declined when the sparsity level increases from θ = 10% to θ = 90%. This issue is expectable
+as increasing the sparsity level leads to consider lower data in the training process of
+recommendation methods. As a result, we can conclude that GDPE has a higher ability than
+other models in alleviating data sparsity problem.
+The results of experiments for both Movielens 100 K and Movielens 1 M datasets are
+reported in Tables 2, 3, and 4 for precision, recall, and F1, respectively. In these experiments,
+we consider different sparsity levels from θ = 10% to θ = 90% with step 10%. Moreover, the
+number of items recommended to target user is set to top _ N = 10 for all compared
+recommendation methods. These experimental results illustrate that GDPE achieves higher
+values of precision, recall, and F1 metrics in comparison to other competitors. It is worth
+noting that these metrics indicate how much the obtained recommendations list is appropriate
+for the target user. Therefore, we can conclude that the proposed method generates more
+Table 2 The precision values for compared algorithms based on MovieLens 100 K and MovieLens 1 M datasets,
+and different levels of sparsity (θ). The length of recommendations list is set to top _ N = 10
+Algorithm MovieLens 100 K
+
+MovieLens 1 M
+
+θ =10% θ=20% θ =50% θ =80% θ =90% θ =10% θ=20% θ =50% θ=80% θ =90%
+PMF
+NLPMF
+MLCF
+IGPE
+PPLSA
+UPCSim
+PP/NP
+GSHF
+MF-LOD
+GHRS
+GDPE
+
+0.629
+0.618
+0.615
+0.586
+0.637
+0.641
+0.646
+0.659
+0.665
+0.679
+0.713
+
+0.604
+0.597
+0.592
+0.564
+0.611
+0.618
+0.632
+0.637
+0.641
+0.653
+0.689
+
+0.486
+0.483
+0.474
+0.491
+0.496
+0.508
+0.517
+0.531
+0.544
+0.562
+0.603
+
+The best results are shown in bold
+
+0.448
+0.439
+0.421
+0.454
+0.461
+0.475
+0.486
+0.498
+0.503
+0.531
+0.562
+
+0.441
+0.432
+0.415
+0.446
+0.458
+0.471
+0.473
+0.481
+0.488
+0.506
+0.547
+
+0.584
+0.576
+0.552
+0.548
+0.591
+0.604
+0.609
+0.617
+0.632
+0.654
+0.691
+
+0.562
+0.551
+0.536
+0.523
+0.581
+0.588
+0.597
+0.611
+0.619
+0.632
+0.673
+
+0.457
+0.451
+0.438
+0.462
+0.469
+0.486
+0.501
+0.518
+0.532
+0.549
+0.586
+
+0.397
+0.391
+0.378
+0.408
+0.421
+0.438
+0.452
+0.469
+0.481
+0.502
+0.534
+
+0.391
+0.386
+0.372
+0.399
+0.413
+0.429
+0.445
+0.458
+0.473
+0.495
+0.521
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38291
+
+Table 3 The recall values for compared algorithms based on MovieLens 100 K and MovieLens 1 M datasets,
+and different levels of sparsity (θ). The length of recommendations list is set to top _ N = 10
+Algorithm MovieLens 100 K
+
+MovieLens 1 M
+
+θ =10% θ=20% θ =50% θ =80% θ =90% θ =10% θ=20% θ =50% θ=80% θ =90%
+PMF
+NLPMF
+MLCF
+IGPE
+PPLSA
+UPCSim
+PP/NP
+GSHF
+MF-LOD
+GHRS
+GDPE
+
+0.668
+0.663
+0.654
+0.632
+0.679
+0.686
+0.701
+0.708
+0.717
+0.725
+0.756
+
+0.631
+0.623
+0.615
+0.598
+0.638
+0.645
+0.657
+0.671
+0.683
+0.701
+0.734
+
+0.537
+0.521
+0.519
+0.554
+0.571
+0.588
+0.603
+0.615
+0.627
+0.636
+0.662
+
+0.482
+0.474
+0.466
+0.493
+0.498
+0.505
+0.521
+0.536
+0.557
+0.572
+0.605
+
+0.467
+0.453
+0.448
+0.479
+0.485
+0.491
+0.508
+0.524
+0.546
+0.559
+0.593
+
+0.618
+0.612
+0.607
+0.593
+0.621
+0.628
+0.652
+0.661
+0.679
+0.693
+0.738
+
+0.598
+0.587
+0.581
+0.572
+0.609
+0.612
+0.639
+0.648
+0.663
+0.678
+0.712
+
+0.504
+0.489
+0.465
+0.521
+0.537
+0.542
+0.567
+0.585
+0.606
+0.615
+0.638
+
+0.443
+0.428
+0.414
+0.458
+0.465
+0.474
+0.488
+0.506
+0.524
+0.541
+0.572
+
+0.435
+0.421
+0.402
+0.447
+0.452
+0.458
+0.469
+0.491
+0.513
+0.528
+0.564
+
+The best results are shown in bold
+
+accurate and appropriate recommendations list than the other recommenders for the target user.
+The proposed method achieves the precision, recall, and F1 values for Movielens 100 K
+dataset in the case θ = 20% in which their values are 0.689, 0.734, and 0.710, respectively. In
+this case, the second-best model is GHRS in which the values for precision, recall, and F1
+metrics are 0.653, 0.701, and 0.676, respectively. The values of all evaluation metrics are
+decreased when the sparsity level increases from θ = 10% to θ = 90%.
+The results of Tables 1-4 prove that the proposed method is more effective than other
+methods in alleviating the data sparsity problem. In addition, we evaluate different recommendation models based on the sparsity level θ = 90%, which means that we only consider
+10% of the whole provided ratings for each user. Considering such a small portion of ratings
+for each user in the recommendation process can appropriately model the behavior of cold start
+users as a common challenging problem in the recommender systems. This is due to the fact
+that the cold start users are those who have explicitly expressed only a small number of ratings
+about the available items. Hence, we can conclude that the proposed method not only
+alleviates the data sparsity problem but can also address the cold start challenge in the
+Table 4 The F1 values for compared algorithms based on MovieLens 100 K and MovieLens 1 M datasets, and
+different levels of sparsity (θ). The length of recommendations list is set to top _ N = 10
+Algorithm MovieLens 100 K
+
+MovieLens 1 M
+
+θ =10% θ=20% θ =50% θ =80% θ =90% θ =10% θ=20% θ =50% θ=80% θ =90%
+PMF
+NLPMF
+MLCF
+IGPE
+PPLSA
+UPCSim
+PP/NP
+GSHF
+MF-LOD
+GHRS
+GDPE
+
+0.647
+0.639
+0.633
+0.608
+0.657
+0.662
+0.672
+0.682
+0.690
+0.701
+0.733
+
+0.617
+0.609
+0.603
+0.580
+0.624
+0.631
+0.644
+0.653
+0.661
+0.676
+0.710
+
+0.510
+0.501
+0.495
+0.520
+0.530
+0.545
+0.556
+0.569
+0.582
+0.596
+0.631
+
+The best results are shown in bold
+
+0.464
+0.455
+0.442
+0.472
+0.478
+0.489
+0.502
+0.516
+0.528
+0.551
+0.582
+
+0.453
+0.442
+0.430
+0.461
+0.471
+0.480
+0.489
+0.501
+0.515
+0.531
+0.569
+
+0.601
+0.593
+0.578
+0.569
+0.605
+0.615
+0.629
+0.638
+0.654
+0.673
+0.713
+
+0.579
+0.568
+0.557
+0.546
+0.594
+0.599
+0.617
+0.628
+0.640
+0.654
+0.691
+
+0.479
+0.469
+0.451
+0.489
+0.501
+0.512
+0.531
+0.549
+0.566
+0.580
+0.610
+
+0.418
+0.408
+0.395
+0.431
+0.441
+0.455
+0.469
+0.486
+0.501
+0.521
+0.552
+
+0.411
+0.402
+0.386
+0.421
+0.431
+0.443
+0.456
+0.473
+0.492
+0.511
+0.541
+
+38292
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+Movielens 100K
+
+0.91
+
+Movielens 1M
+
+Movielens 100K
+
+0.71
+
+Movielens 1M
+
+0.69
+
+0.89
+
+0.67
+
+Precision
+
+0.87
+
+MAE
+
+0.65
+
+0.85
+
+0.63
+
+0.83
+
+0.61
+
+0.81
+
+0.59
+
+0.79
+
+0.57
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+δ
+
+Movielens 100K
+
+0.74
+
+0.6
+
+0.7
+
+0.8
+
+0.1
+
+0.9
+
+Movielens 1M
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+δ
+
+Movielens 100K
+
+0.72
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+Movielens 1M
+
+0.73
+0.7
+
+0.72
+
+0.68
+
+0.7
+
+F1
+
+Recall
+
+0.71
+
+0.66
+
+0.69
+0.68
+
+0.64
+
+0.67
+0.66
+
+0.62
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+δ
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+δ
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+Fig. 3 The values of MAE, precision, recall, and F1 metrics for the proposed method based on different values of
+parameter δ. The sparsity level is set to θ = 20%
+
+recommender systems. The main reasons behind this achievement include adding virtual
+ratings to the user’s rating profile and also utilizing the genres of movies and demographic
+information of users in the proposed method.
+
+4.5 Parameter analysis
+The effect of different values of the input parameters on the efficiency of the proposed GDPE
+method is investigated in this section according to different evaluations metrics. To do this, a
+number of experiments have been conducted on the Movielens 100 K and Movielens 1 M
+datasets. Fig. 3 shows the values of MAE, precision, recall, and F1 metrics for GDPE in terms
+of different values of parameter δ for both Movielens 100 K and Movielens 1 M datasets. δ is
+an input parameter utilized in Eq. (3) as a predefined threshold value to determine the level of
+reliability in producing accurate predictions. It is worth noting that we use θ = 20% for the
+sparsity level in these experiments. As can be seen from these results, the MAE values for
+GDPE decrease by increasing δ from δ = 0.1 to δ = 0.4. Whilst, the MAE values increase
+when δ is higher than 0.4. Moreover, increasing δ from δ = 0.1 to δ = 0.4 results in boosting
+GDPE’s performance according to precision, recall, and F1 metrics while these metrics will be
+declined for δ values higher than 0.4. Accordingly, we can conclude that δ = 0.4 is the best
+value which makes the best performance of the proposed method in terms of all evaluation
+metrics and both Movielens 100 K and Movielens 1 M datasets. The higher values of
+parameter δ result in increasing the number of virtual ratings added to the unreliable rating
+profiles. Hence, when δ exceeds 0.4, a large number of virtual ratings will be incorporated into
+the unreliable profiles leading to an increment in the probability of adding irrelevant ratings
+and declining the recommendation accuracy of the proposed method.
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38293
+
+Movielens 100K
+
+Movielens 1M
+
+0.9
+
+0.95
+
+0.88
+
+0.93
+0.91
+
+0.86
+
+0.89
+
+MAE
+
+MAE
+
+0.84
+0.82
+0.8
+
+0.87
+0.85
+0.83
+0.81
+
+0.78
+
+0.79
+
+0.76
+
+0.77
+
+0.74
+
+0.75
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+100 110 120
+
+10
+
+20
+
+30
+
+40
+
+50
+
+N
+
+60
+
+70
+
+80
+
+90
+
+100 110 120
+
+N
+
+(a)
+
+(b)
+
+Fig. 4 The MAE values for the proposed method based on different number of nearest neighbors (N): (a)
+Movielens 100 K dataset, (b) Movielens 1 M dataset. The sparsity level is set to θ = 20%
+
+Fig. 4 demonstrates the effect of different number of nearest neighbors (N) on the GDPE’s
+performance measured by the MAE metric for both Movielens 100 K and Movielens 1 M
+datasets. N is utilized in Eq. (24) as the number of nearest neighbors employed in the rating
+prediction process. In these results, the value of N changes from N = 10 to N = 120 with step
+10. These results reveal that the MAE values are declined by increasing N from 10 to 90 for
+both datasets. Therefore, increasing the value of parameter N from N = 10 to N = 90 results in
+enhancing the GDPE’s performance. Moreover, the performance is decreased when N exceeds
+90. This is due to the fact that when N exceeds 90, the probability of considering ineffective
+neighbors in the recommendation process will be increased which this issue reduces the
+accuracy of predictions. Another important parameter used in the recommendation process
+is top _ N referring to the number of items considered in the recommendations list. Figs. 5 and
+6 show the precision, recall, and F1 values of different recommendation methods for top _ N
+= 5,10,15 based on Movielens 100 K and Movielens 1 M datasets, respectively. As it is
+shown, the values of all metrics for GDPE are higher than other compared models in terms of
+all lengths of recommendations list and both datasets. Therefore, GDPE significantly outperforms other recommenders according to precision, recall, and F1 metrics and also different top
+_ N values. Figs. 5 and 6 demonstrate that the precision values of all compared models are
+declined when top _ N increases from 5 to 15. Moreover, increasing the value of top _ N
+results in increasing the value of recall metric for all recommendation methods.
+
+NLPMF
+UPCSim
+GHRS
+
+MLCF
+PP/NP
+GDPE
+
+IGPE
+GSHF
+
+PMF
+PPLSA
+MF-LOD
+0.75
+Recall
+
+0.8
+
+0.7
+Precision
+
+0.75
+
+0.65
+
+NLPMF
+UPCSim
+GHRS
+
+MLCF
+PP/NP
+GDPE
+
+NLPMF
+UPCSim
+GHRS
+
+MLCF
+PP/NP
+GDPE
+
+IGPE
+GSHF
+
+0.75
+0.7
+
+0.7
+
+0.65
+
+0.65
+
+0.6
+
+PMF
+PPLSA
+MF-LOD
+
+IGPE
+GSHF
+
+F1
+
+PMF
+PPLSA
+MF-LOD
+
+0.6
+0.6
+
+0.55
+
+0.55
+
+0.55
+
+0.5
+
+0.5
+
+0.5
+
+0.45
+
+0.45
+
+0.45
+
+top_N=5
+
+top_N=10
+
+(a)
+
+top_N=15
+
+top_N=5
+
+top_N=10
+
+(b)
+
+top_N=15
+
+top_N=5
+
+top_N=10
+
+top_N=15
+
+(c)
+
+Fig. 5 Performance comparison on Movielens 100 K dataset in terms of different top _ N values: (a) Precision
+metric, (b) Recall metric, and (c) F1 metric. The sparsity level is set to θ = 20%
+
+38294
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+PMF
+PPLSA
+MF-LOD
+
+NLPMF
+UPCSim
+GHRS
+
+MLCF
+PP/NP
+GDPE
+
+IGPE
+GSHF
+
+PMF
+PPLSA
+MF-LOD
+
+NLPMF
+UPCSim
+GHRS
+
+MLCF
+PP/NP
+GDPE
+
+PMF
+PPLSA
+MF-LOD
+
+IGPE
+GSHF
+
+0.65
+
+0.6
+
+0.65
+
+0.55
+0.5
+
+F1
+
+0.7
+
+0.7
+Recall
+
+0.75
+
+Precision
+
+0.7
+0.65
+
+0.6
+
+0.5
+
+0.5
+
+0.4
+
+0.45
+
+0.45
+
+top_N=10
+
+top_N=15
+
+IGPE
+GSHF
+
+0.55
+
+0.45
+
+(a)
+
+MLCF
+PP/NP
+GDPE
+
+0.6
+
+0.55
+
+top_N=5
+
+NLPMF
+UPCSim
+GHRS
+
+top_N=5
+
+top_N=10
+
+(b)
+
+top_N=15
+
+top_N=5
+
+top_N=10
+
+top_N=15
+
+(c)
+
+Fig. 6 Performance comparison on Movielens 1 M dataset in terms of different top _ N values: (a) Precision
+metric, (b) Recall metric, and (c) F1 metric. The sparsity level is set to θ = 20%
+
+5 Conclusions
+Movie recommendation methods have many applications in real-world systems that the main
+purpose of these methods is to help users find their interested movies. These methods mainly
+use the preferences of users in the past which are represented as the ratings assigned to
+different movies by users. However, users tend to provide ratings only for a small portion of
+movies leading to raise a problem called data sparsity. We proposed a movie recommendation
+method in this paper in which an effective profile expansion technique is utilized for the aim of
+empowering user’s ratings profile through additional virtual ratings. A probabilistic model is
+utilized in the proposed method to determine how many virtual ratings should be added to each
+rating profile. The genres of movies and demographic information of users are used to
+compute these virtual ratings. To demonstrate that how much the proposed method is effective,
+several experiments have been conducted by utilizing two movie recommendation datasets and
+their results showed that our model is more efficient than other competitors. For the future
+work, other side data such as social relationships and tag information can be employed to
+enhance the ability of the proposed method in generating more accurate recommendations.
+Also, the proposed rating profile expansion model can be utilized in other types of recommender systems such as music recommendation methods.
+Data availability All the datasets used in this paper are publicly available. The links to access these datasets are
+provided in this paper.
+
+Declarations
+Competing interests The authors have no competing interests to declare that are relevant to the content of this
+article.
+
+References
+1. Ahmadian S, Moradi P, Akhlaghian F (2014) An improved model of trust-aware recommender systems
+using reliability measurements. In: 2014 6th Conference on Information and Knowledge Technology (IKT).
+pp. 98–103
+2. Ahmadian S, Meghdadi M, Afsharchi M (2018) Incorporating reliable virtual ratings into social recommendation systems. Appl Intell 48:4448–4469
+3. Ahmadian S, Joorabloo N, Jalili M, Meghdadi M, Afsharchi M, Ren Y (2018) A temporal clustering
+approach for social recommender systems. In: 2018 IEEE/ACM International Conference on Advances in
+Social Networks Analysis and Mining (ASONAM). pp. 1139–1144
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+38295
+
+4. Ahmadian S, Afsharchi M, Meghdadi M (2019) An effective social recommendation method based on user
+reputation model and rating profile enhancement. J Inf Sci 45:607–642
+5. Ahmadian S, Afsharchi M, Meghdadi M (2019) A novel approach based on multi-view reliability measures
+to alleviate data sparsity in recommender systems. Multimed Tools Appl 78:17763–17798
+6. Ahmadian S, Joorabloo N, Jalili M, Ahmadian M (2021) Alleviating data sparsity problem in time-aware
+recommender systems using a reliable rating profile enrichment approach. Expert Systems with
+Applications. p. 115849
+7. Alonso S, Bobadilla J, Ortega F, Moya R (2019) Robust model-based reliability approach to tackle shilling
+attacks in collaborative filtering recommender systems. IEEE Access 7:41782–41798
+8. Bishop CM (2006) Pattern recognition and machine learning: springer-Verlag New York
+9. Breitfuss A, Errou K, Kurteva A, Fensel A (2021) Representing emotions with knowledge graphs for movie
+recommendations. Futur Gener Comput Syst 125:715–725
+10. Cauteruccio F, Terracina G, Ursino D (2020) Generalizing identity-based string comparison metrics:
+framework and techniques. Knowl-Based Syst 187:104820
+11. Chen B, Ding Y, Xin X, Li Y, Wang Y, Wang D (2021) AIRec: attentive intersection model for tag-aware
+recommendation. Neurocomputing 421:105–114
+12. Chen X, Liu D, Xiong Z, Zha ZJ (2021) Learning and fusing multiple user interest representations for
+Micro-video and movie recommendations. IEEE Trans Multimed 23:484–496
+13. Chen YL, Yeh YH, Ma MR (2021) A movie recommendation method based on users' positive and negative
+profiles. Inf Process Manag 58:102531
+14. Formoso V, Fernández D, Cacheda F, Carneiro V (2013) Using profile expansion techniques to alleviate the
+new user problem. Inf Process Manag 49:659–672
+15. Gan M, Cui H (2021) Exploring user movie interest space: a deep learning based dynamic recommendation
+model. Expert Syst Appl 173:114695
+16. Huang X, Fang Q, Qian S, Sang J, Li Y, Xu C (2019) Explainable Interaction-driven User Modeling over
+Knowledge Graph for Sequential Recommendation. In: Proceedings of the 27th ACM International
+Conference on Multimedia. pp. 548–556
+17. Huang L, Tan W, Sun Y (2019) Collaborative recommendation algorithm based on probabilistic matrix
+factorization in probabilistic latent semantic analysis. Multimed Tools Appl 78:8711–8722
+18. Huang L, Ma H, He X, Chang L (2021) Multi-affect(ed): improving recommendation with similarityenhanced user reliability and influence propagation. Front Comput Sci 15:155331
+19. Indira K, Kavithadevi MK (2019) Efficient machine learning model for movie recommender systems using
+multi-cloud environment. Mobile Netw Appli 24:1872–1882
+20. Jiang Y, Ma H, Liu Y, Li Z (2020) Exploring user trust and reliability for recommendation: A hypergraph
+ranking approach. In: International Conference on Neural Information Processing. pp. 333–344
+21. Katarya R, Verma OP (2017) An effective collaborative movie recommender system with cuckoo search.
+Egyptian Inform J 18:105–112
+22. Khan ZY, Niu Z, Nyamawe AS, Haq I (2021) A deep hybrid model for recommendation by jointly
+leveraging ratings, reviews and metadata information. Eng Appl Artif Intell 97:104066
+23. Lawrence ND, Urtasun R Non-linear matrix factorization with Gaussian processes. In: ICML '09 proceedings of the 26th annual international conference on machine learning, Montreal, Quebec, Canada, 2009, pp.
+601–608.
+24. Li H, Li D (2021) A time-aware hybrid recommendation scheme combining content-based and collaborative filtering. Front Comput Sci 15:154613
+25. Matoussek J, Vondrak J (2001) The probabilistic method: Charles University
+26. Moradi P, Ahmadian S (2015) A reliability-based recommendation method to improve trust-aware recommender systems. Expert Syst Appl 42:7386–7398
+27. Moradi P, Ahmadian S, Akhlaghian F (2015) An effective trust-based recommendation method using a
+novel graph clustering algorithm. Physica A: Statistical Mech Appl 436:462–481
+28. Moradi P, Rezaimehr F, Ahmadian S, Jalili M (2016) A trust-aware recommender algorithm based on users
+overlapping community structure. In: 2016 sixteenth international conference on advances in ICT for
+emerging regions (ICTer). pp. 162–167
+29. Natarajan S, Vairavasundaram S, Natarajan S, Gandomi AH (2020) Resolving data sparsity and cold start
+problem in collaborative filtering recommender system using linked open data. Expert Syst Appl 149:
+113248
+30. Ortega F, Cabrera RL, Prieto ÁG, Bobadilla J (2021) Providing reliability in recommender systems through
+Bernoulli matrix factorization. Inf Sci 553:110–128
+31. Polatidis N, Georgiadis CK (2016) A multi-level collaborative filtering method that improves recommendations. Expert Syst Appl 48:100–110
+
+38296
+
+Multimedia Tools and Applications (2023) 82:38275–38296
+
+32. Qu T, Wan W, Wang S (2021) Visual content-enhanced sequential recommendation with feature-level
+attention. Neurocomputing 443:262–271
+33. Rahmanic HA, Aliannejadi M, Ahmadian S, Baratchi M, Afsharchi M, Crestani F (2019) LGLMF: local
+geographical based logistic matrix factorization model for POI recommendation. In: AIRS 2019:
+Information Retrieval Technology. pp. 66–78
+34. Rezaeimehr F, Moradi P, Ahmadian S, Qader NN, Jalili M (2018) TCARS: time-and community-aware
+recommendation system. Futur Gener Comput Syst 78:419–429
+35. Roy A, Ludwig SA (2021) Genre based hybrid filtering for movie recommendation engine. J Intell Inf Syst
+56:485–507
+36. Salakhutdinov R, Mnih A (2007) Probabilistic matrix factorization. In: NIPS'07: Proceedings of the 20th
+International Conference on Neural Information Processing Systems. pp. 1257–1264
+37. Sang L, Xu M, Qian S, Martin M, Li P, Wu X (2021) Context-dependent propagating-based video
+recommendation in multimodal heterogeneous information networks. IEEE Trans Multimed 23:2019–2032
+38. Tahmasebi F, Meghdadi M, Ahmadian S, Valiallahi K (2021) A hybrid recommendation system based on
+profile expansion technique to alleviate cold start problem. Multimed Tools Appl 80:2339–2354
+39. Tahmasebi H, Ravanmehr R, Mohamadrezaei R (2021) Social movie recommender system based on deep
+autoencoder network using twitter data. Neural Comput & Applic 33:1607–1623
+40. Thakker U, Patel R, Shah M (2021) A comprehensive analysis on movie recommendation system
+employing collaborative filtering. Multimed Tools Appl 80:28647–28672
+41. Walek B, Fojtik V (2020) A hybrid recommender system for recommending relevant movies using an
+expert system. Expert Syst Appl 158:113452
+42. Wang D, Yih Y, Ventresca M (2020) Improving neighbor-based collaborative filtering by using a hybrid
+similarity measurement. Expert Syst Appl 160:113651
+43. Wei G, Wu Q, Zhou M (2021) A hybrid probabilistic multiobjective evolutionary algorithm for commercial
+recommendation systems. IEEE Transac Comput Social Syst 8:589–598
+44. Widiyaningtyas T, Hidayah I, Adji TB (2021) User profile correlation-based similarity (UPCSim) algorithm
+in movie recommendation system. J Big Data 8:1–21
+45. Xia H, Wei X, An W, Zhang ZJ, Sun Z (2021) Design of electronic-commerce recommendation systems
+based on outlier mining. Electron Mark 31:295–311
+46. Xie H, Lui JCS (2015) Mathematical modeling and analysis of product rating with partial information.
+ACM Trans Knowl Discov Data 9:1–33
+47. Yuan X, Han L, Qian S, Zhu L, Zhu J, Yan H (2021) Preliminary data-based matrix factorization approach
+for recommendation. Inf Process Manag 58:102384
+48. Zamanzadeh Darban Z, Valipour MH (2022) GHRS: graph-based hybrid recommendation system with
+application to movie recommendation. Expert Syst Appl 200:116850
+49. Zayani CA, Ghorbel L, Amous I, Mezghanni M, Péninou A, Sèdes F (2020) Profile reliability to improve
+recommendation in social-learning context. Online Inf Rev 44:433–454
+
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in published maps
+and institutional affiliations.
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this article under a
+publishing agreement with the author(s) or other rightsholder(s); author self-archiving of the accepted
+manuscript version of this article is solely governed by the terms of such publishing agreement and
+applicable law.
+
+
